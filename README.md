@@ -49,7 +49,7 @@ Sau khi chạy xong lệnh ở Bước 3, bạn có thể truy cập các dịch
 
 | Dịch vụ | Địa chỉ truy cập | Tài khoản / Thông tin |
 | :--- | :--- | :--- |
-| **WordPress CMS** | [http://localhost:8088](http://localhost:8088) | Cài đặt ban đầu hoặc tài khoản đã setup |
+| **WordPress CMS** | [http://localhost:8088](http://localhost:8088)<br>Quản trị: [http://localhost:8088/wp-admin](http://localhost:8088/wp-admin) | **Tài khoản:** `admin` (hoặc `admin@gmail.com`)<br>**Mật khẩu:** `admin@gmail.com` |
 | **phpMyAdmin** | [http://localhost:8089](http://localhost:8089) | **Server:** `db`<br>**User:** `group_a_user`<br>**Password:** `group_a_pass`<br>*(Hoặc User: `root` / Pass: `group_a_root_pass`)* |
 | **MySQL Database** | `localhost:3308` | **DB Name:** `group_a_db`<br>**Host nội bộ:** `db:3306` |
 

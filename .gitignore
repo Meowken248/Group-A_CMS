@@ -6,11 +6,12 @@
 .env
 wp-config.php
 
-# File dump database tạm thời (giữ lại .gitkeep và README trong db-init)
+# File dump database tạm thời (giữ lại file seed khởi tạo cho cả nhóm)
 docker/db-init/*.sql
 docker/db-init/*.sql.gz
 !docker/db-init/.gitkeep
 !docker/db-init/README.md
+!docker/db-init/init.sql
 
 # File tạm và logs
 *.log
