@@ -35,36 +35,49 @@ Nhóm đã chuẩn bị sẵn file mẫu `.env.example`. Hãy sao chép ra file 
 
 > 💡 *Lưu ý: File `.env` chứa cấu hình riêng của từng máy và đã được đưa vào `.gitignore`, sẽ không bị đẩy lên Git làm ảnh hưởng đến các thành viên khác.*
 
-### Bước 3: Khởi động hệ thống bằng Docker Compose
+### Bước 3: Cấu hình tên miền ảo (Hosts)
+Dự án sử dụng tên miền nội bộ **`http://wordpress.local`**. Mỗi thành viên chỉ cần thêm 1 dòng vào file `hosts` của máy tính:
+- **Trên Windows**:
+  1. Mở Notepad bằng quyền **Run as Administrator**.
+  2. Mở file `C:\Windows\System32\drivers\etc\hosts`.
+  3. Thêm dòng sau vào cuối file rồi lưu lại:
+     ```text
+     127.0.0.1 wordpress.local
+     ```
+- **Trên macOS / Linux**:
+  Mở Terminal và chạy:
+  ```bash
+  sudo echo "127.0.0.1 wordpress.local" >> /etc/hosts
+  ```
+
+### Bước 4: Khởi động hệ thống bằng Docker Compose
 ```bash
 docker compose up -d
 ```
-Lệnh này sẽ tự động tải các image (WordPress, MySQL 8.0, phpMyAdmin, WP-CLI) và khởi chạy toàn bộ hệ thống ngầm.
+Lệnh này sẽ tự động khởi chạy toàn bộ hệ thống ngầm và tự động nạp CSDL mẫu từ `docker/db-init/init.sql`.
 
 ---
 
 ## 🌐 3. Địa Chỉ Truy Cập & Thông Tin Đăng Nhập
 
-Sau khi chạy xong lệnh ở Bước 3, bạn có thể truy cập các dịch vụ:
+Sau khi chạy xong lệnh ở Bước 4, bạn có thể truy cập các dịch vụ:
 
 | Dịch vụ | Địa chỉ truy cập | Tài khoản / Thông tin |
 | :--- | :--- | :--- |
-| **WordPress CMS** | [http://localhost:8088](http://localhost:8088)<br>Quản trị: [http://localhost:8088/wp-admin](http://localhost:8088/wp-admin) | **Tài khoản:** `admin` (hoặc `admin@gmail.com`)<br>**Mật khẩu:** `admin@gmail.com` |
+| **WordPress CMS** | [http://wordpress.local](http://wordpress.local)<br>Quản trị: [http://wordpress.local/wp-admin](http://wordpress.local/wp-admin) | **Tài khoản:** `admin` (hoặc `admin@gmail.com`)<br>**Mật khẩu:** `admin@gmail.com` |
 | **phpMyAdmin** | [http://localhost:8089](http://localhost:8089) | **Server:** `db`<br>**User:** `group_a_user`<br>**Password:** `group_a_pass`<br>*(Hoặc User: `root` / Pass: `group_a_root_pass`)* |
 | **MySQL Database** | `localhost:3308` | **DB Name:** `group_a_db`<br>**Host nội bộ:** `db:3306` |
 
 ---
 
-## ⚙️ 4. Hướng Dẫn Đổi Port (Khi Bị Trùng Cổng)
+## ⚙️ 4. Hướng Dẫn Đổi Port (Khi Bị Trùng Cổng 80)
 
-Nếu cổng `8088`, `8089` hoặc `3308` trên máy của bạn đã được phần mềm khác sử dụng (hoặc bạn muốn dùng cổng khác như 80, 8080):
-1. Mở file `.env` trên máy của bạn.
-2. Thay đổi các biến cổng tương ứng:
+Mặc định WordPress chạy ở cổng `80` để truy cập trực tiếp qua `http://wordpress.local`. Nếu cổng 80 trên máy của bạn đã bị phần mềm khác chiếm:
+1. Mở file `.env` trên máy của bạn, đổi `WORDPRESS_PORT` sang cổng khác (ví dụ `8088`):
    ```env
-   WORDPRESS_PORT=8080
-   PHPMYADMIN_PORT=8082
-   DB_PORT=3307
+   WORDPRESS_PORT=8088
    ```
+2. Sau đó bạn sẽ truy cập qua `http://wordpress.local:8088`.
 3. Khởi động lại container:
    ```bash
    docker compose down
