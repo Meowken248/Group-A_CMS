@@ -1,0 +1,119 @@
+/* ==========================================================================
+   Module 9: Categories Widget / Card
+   Author: Bùi Nguyễn Minh Quân (Module 9 - Nhóm A)
+   Mô tả: Khối hiển thị Categories theo đúng thiết kế mẫu:
+          - Tiêu đề Categories
+          - Thanh sọc chéo ngăn cách (Hatched / Diagonal striped divider)
+          - Danh sách chuyên mục với bullet tròn màu vàng/cam
+          - Tên danh mục màu xanh xám nhạt với hiệu ứng hover
+          - Đường kẻ ngang ngăn cách mỏng giữa các mục
+   ========================================================================== */
+
+.module-9-categories-widget {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 30px auto;
+}
+
+.module-9-categories-widget *,
+.module-9-categories-widget *::before,
+.module-9-categories-widget *::after {
+    box-sizing: border-box;
+}
+
+/* Card bao quanh khối Categories */
+.module-9-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 24px 22px 18px 22px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Tiêu đề "Categories" */
+.module-9-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+}
+
+/* Thanh sọc chéo trang trí (Diagonal Hatch / Striped Divider) */
+.module-9-divider-stripe {
+    width: 100%;
+    height: 12px;
+    background: repeating-linear-gradient(
+        135deg,
+        #e2e8f0,
+        #e2e8f0 2px,
+        #ffffff 2px,
+        #ffffff 6px
+    );
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    margin-top: 8px;
+    margin-bottom: 16px;
+}
+
+/* Danh sách Categories */
+.module-9-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Từng dòng Category */
+.module-9-item {
+    display: flex;
+    align-items: center;
+    padding: 13px 4px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.2s ease;
+}
+
+.module-9-item:last-child {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Dấu chấm Bullet màu vàng/cam tròn trịa */
+.module-9-bullet {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #f59e0b; /* Amber / Orange yellow */
+    margin-right: 14px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.15);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Link tên chuyên mục (Màu xanh xám nhạt như hình ảnh) */
+.module-9-link {
+    color: #64748b; /* Soft blue-gray color */
+    font-size: 14.5px;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+    line-height: 1.4;
+    word-break: break-word;
+    display: block;
+}
+
+/* Hiệu ứng khi rê chuột (Hover) */
+.module-9-item:hover {
+    background-color: #f8fafc;
+}
+
+.module-9-item:hover .module-9-bullet {
+    background-color: #d97706;
+    transform: scale(1.3);
+}
+
+.module-9-item:hover .module-9-link {
+    color: #0ea5e9; /* Ocean blue highlight */
+}
