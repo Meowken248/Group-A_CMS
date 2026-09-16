@@ -1,0 +1,74 @@
+services:
+  wordpress:
+    image: wordpress:apache
+    restart: unless-stopped
+    ports:
+      - "${WORDPRESS_PORT:-8088}:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME:-group_a_db}
+      WORDPRESS_DB_USER: ${DB_USER:-group_a_user}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-group_a_pass}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX:-wp_}
+      WORDPRESS_DEBUG: ${WORDPRESS_DEBUG:-1}
+    volumes:
+      - ./:/var/www/html
+      - ./docker/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:ro
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    command: >
+      --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "${DB_PORT:-3308}:3306"
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-group_a_db}
+      MYSQL_USER: ${DB_USER:-group_a_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-group_a_pass}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-group_a_root_pass}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/db-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASSWORD:-group_a_root_pass}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 15s
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: unless-stopped
+    ports:
+      - "${PHPMYADMIN_PORT:-8089}:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: ${DB_USER:-group_a_user}
+      PMA_PASSWORD: ${DB_PASSWORD:-group_a_pass}
+      UPLOAD_LIMIT: 64M
+    depends_on:
+      db:
+        condition: service_healthy
+
+  wpcli:
+    image: wordpress:cli
+    profiles:
+      - cli
+    volumes:
+      - ./:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${DB_NAME:-group_a_db}
+      WORDPRESS_DB_USER: ${DB_USER:-group_a_user}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD:-group_a_pass}
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db_data:
