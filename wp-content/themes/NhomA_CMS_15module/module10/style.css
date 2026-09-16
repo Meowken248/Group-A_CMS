@@ -1,0 +1,151 @@
+/* ==========================================================================
+   Module 10: Recent Posts Widget / Card
+   Author: Bùi Nguyễn Minh Quân (Module 10 - Nhóm A)
+   Mô tả: Khối hiển thị Bài viết mới nhất (Recent post) theo đúng thiết kế mẫu:
+          - Tông nền màu xanh ngọc / teal (#45b4b4)
+          - Badge ngày tháng định dạng phân số cách điệu:
+            Ngày (trên) / Tháng (dưới) kèm dấu gạch ngang và năm ở giữa
+          - Tiêu đề bài viết màu trắng tinh tế
+          - Nút "XEM TẤT CẢ TIN TỨC" ở chân khối với nền đậm hơn
+   ========================================================================== */
+
+.module-10-recent-posts-widget {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 30px auto;
+}
+
+.module-10-recent-posts-widget *,
+.module-10-recent-posts-widget *::before,
+.module-10-recent-posts-widget *::after {
+    box-sizing: border-box;
+}
+
+/* Khung card màu xanh ngọc / teal */
+.module-10-card {
+    background-color: #45b4b4;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(69, 180, 180, 0.28);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Danh sách bài viết */
+.module-10-posts-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 24px 22px 10px 22px !important;
+}
+
+/* Từng bài viết */
+.module-10-post-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 22px;
+    transition: transform 0.2s ease;
+}
+
+.module-10-post-item:hover {
+    transform: translateX(3px);
+}
+
+/* Badge ngày tháng kiểu phân số (Fraction Date Badge) */
+.module-10-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 44px;
+    flex-shrink: 0;
+    margin-right: 18px;
+    color: #ffffff;
+    line-height: 1;
+    user-select: none;
+}
+
+/* Ngày (ở trên) */
+.module-10-day {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding-bottom: 3px;
+    color: #ffffff;
+}
+
+/* Dòng gạch ngang và năm ở giữa */
+.module-10-divider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 1px 0;
+}
+
+.module-10-line {
+    display: inline-block;
+    width: 16px;
+    height: 1.5px;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-right: 3px;
+}
+
+.module-10-year {
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Tháng (ở dưới) */
+.module-10-month {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding-top: 3px;
+    color: #ffffff;
+}
+
+/* Tiêu đề bài viết */
+.module-10-content {
+    flex: 1;
+}
+
+.module-10-title {
+    color: #ffffff !important;
+    font-size: 14.5px;
+    line-height: 1.45;
+    font-weight: 400;
+    text-decoration: none !important;
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.module-10-post-item:hover .module-10-title {
+    opacity: 0.92;
+    text-decoration: underline !important;
+}
+
+/* Chân card: Nút Xem tất cả tin tức */
+.module-10-footer {
+    width: 100%;
+    background-color: #3ba3a3;
+    transition: background-color 0.2s ease;
+}
+
+.module-10-btn-all {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    text-align: center;
+    color: #ffffff !important;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.module-10-footer:hover {
+    background-color: #339191;
+}
