@@ -1,23 +1,33 @@
-### AL ###
-#Template for AL projects for Dynamics 365 Business Central
-#launch.json folder
-.vscode/
-#Cache folder
+# ==========================================
+# GITIGNORE CHO DỰ ÁN DOCKER WORDPRESS CMS
+# ==========================================
+
+# Môi trường và cấu hình bảo mật cục bộ
+.env
+wp-config.php
+
+# File dump database tạm thời (giữ lại .gitkeep và README trong db-init)
+docker/db-init/*.sql
+docker/db-init/*.sql.gz
+!docker/db-init/.gitkeep
+!docker/db-init/README.md
+
+# File tạm và logs
+*.log
+error_log
+debug.log
 .alcache/
-#Symbols folder
-.alpackages/
-#Snapshots folder
 .snapshots/
-#Testing Output folder
 .output/
-#Extension App-file
-*.app
-#Rapid Application Development File
-rad.json
-#Translation Base-file
-*.g.xlf
-#License-files
-*.bclicense
-*.flf
-#Test results file
-TestResults.xml
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# IDE và Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
