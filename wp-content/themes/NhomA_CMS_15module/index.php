@@ -1,16 +1,21 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Index Template - NhomA_CMS_15module
+ * Hiển thị giao diện chính tích hợp Module 13: Pages
+ */
 
-<div class="container my-5">
-    <div class="alert alert-success text-center" role="alert">
-        <h4>Chào mừng bạn đến với WordPress Theme của Nhóm A!</h4>
-        <p class="mb-0">Module Header đã được nạp thành công.</p>
-    </div>
-</div>
+get_header();
+?>
 
-<!-- Tải thư viện JS cho Bootstrap Dropdown hoạt động -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- NẠP TRỰC TIẾP MODULE 13 TỪ THƯ MỤC 13/TEST.PHP -->
+<?php
+$module13_path = get_template_directory() . '/13/test.php';
+if (file_exists($module13_path)) {
+    include $module13_path;
+} else {
+    echo '<div class="alert alert-warning text-center">Không tìm thấy file Module 13 tại thư mục /13/test.php</div>';
+}
+?>
 
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php
+get_footer();

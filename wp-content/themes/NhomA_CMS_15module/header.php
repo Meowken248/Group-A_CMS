@@ -82,3 +82,7 @@
         </ul>
     </div>
 </nav>
+
+<!-- KHU VỰC NỘI DUNG CHÍNH (MAIN CONTENT) -->
+<main id="site-main" class="site-main py-4">
+    <div class="container site-container">
