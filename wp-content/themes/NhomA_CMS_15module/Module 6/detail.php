@@ -213,6 +213,19 @@
                     include get_template_directory() . '/Module 7/test.php';
                 }
                 ?>
+
+                <!-- 5. NẠP MODULE 8: BÌNH LUẬN (COMMENTS - BOOTSNIPP rNEdR) -->
+                <?php
+                if (comments_open() || get_comments_number()) {
+                    if (file_exists(get_template_directory() . '/Module 8/comments.php')) {
+                        include get_template_directory() . '/Module 8/comments.php';
+                    } elseif (file_exists(get_template_directory() . '/Module 8/test.php')) {
+                        include get_template_directory() . '/Module 8/test.php';
+                    } else {
+                        comments_template();
+                    }
+                }
+                ?>
             </article>
     <?php endwhile;
     endif; ?>
