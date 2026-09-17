@@ -63,21 +63,6 @@ $fallback_comments = [
         margin: 20px auto;
     }
 
-    /* Ghi chú yêu cầu GV */
-    .module-14-note-badge {
-        background: #fef9c3;
-        border-left: 4px solid #eab308;
-        padding: 12px 18px;
-        margin-bottom: 22px;
-        border-radius: 0 4px 4px 0;
-        font-size: 13.5px;
-        color: #713f12;
-    }
-
-    .module-14-note-badge strong {
-        color: #854d0e;
-    }
-
     /* Khung chứa bình luận */
     .module-14-container {
         background: #ffffff;
@@ -299,12 +284,6 @@ $fallback_comments = [
 </style>
 
 <div class="module-14-wrapper">
-    <!-- Ghi chú hiển thị theo yêu cầu đề bài Module 14 -->
-    <div class="module-14-note-badge">
-        <i class="fa-solid fa-comments mr-1"></i>
-        <strong>Module số 14 (Comments):</strong> Tùy biến giao diện hiển thị bình luận theo chuẩn Bootstrap Card & Media Object (Bootsnipp), hỗ trợ phản hồi phân cấp lồng nhau (Nested Reply) đúng mẫu đề bài.
-    </div>
-
     <div class="module-14-container">
         <div class="module-14-header">
             <h3 class="module-14-title">

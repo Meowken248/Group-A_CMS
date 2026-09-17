@@ -242,21 +242,6 @@ $module13_fallbacks = [
         margin: 0;
     }
 
-    /* Badge ghi chú yêu cầu GV */
-    .module-13-note-badge {
-        background: #fef9c3;
-        border-left: 4px solid #eab308;
-        padding: 10px 15px;
-        margin-bottom: 18px;
-        border-radius: 0 4px 4px 0;
-        font-size: 13px;
-        color: #713f12;
-    }
-
-    .module-13-note-badge strong {
-        color: #854d0e;
-    }
-
     /* Responsive cho màn hình nhỏ */
     @media (max-width: 992px) {
         .module-13-list.layout-grid {
@@ -282,13 +267,6 @@ $module13_fallbacks = [
 </style>
 
 <div class="module-13-wrapper">
-    <!-- Ghi chú hiển thị theo yêu cầu đề bài Module 13 -->
-    <div class="module-13-note-badge">
-        <i class="fa-solid fa-circle-info mr-1"></i>
-        <strong>Module số 13 (Pages):</strong> Hiển thị danh sách các trang đào tạo theo định dạng
-        <em>"Hình đứng dạng cột - mỗi dòng 1 bài viết (rớt dòng responsive)"</em> theo đúng yêu cầu đề bài của giảng viên.
-    </div>
-
     <div class="module-13-card-box">
         <!-- HEADER CỦA MODULE -->
         <div class="module-13-header">
