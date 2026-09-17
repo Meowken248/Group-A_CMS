@@ -1,277 +1,58 @@
 /*
-Theme Name: NhomA_CMS_15module
+Theme Name: Nhom A Theme
 Theme URI: http://wordpress.local
-Author: Nhóm A
-Description: Theme WordPress cho bài tập nhóm CMS gồm 15 module - Khoa CNTT TDC
+Author: Nhom A
 Version: 1.0
+Description: Theme đồ án Nhóm A WordPress
 */
 
-/* ===================================================
-   1. RESET & BASE STYLES
-   =================================================== */
-* {
-    box-sizing: border-box;
+/* Reset & Style cho Header theo mẫu */
+body {
     margin: 0;
     padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa;
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    background-color: #f4f6f9;
-    color: #333;
-    line-height: 1.6;
+.custom-navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 25px;
 }
 
-a {
-    text-decoration: none;
-    color: #005baa;
-    transition: color 0.2s ease;
-}
-
-a:hover {
-    color: #d32f2f;
-}
-
-.site-container {
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-/* ===================================================
-   2. HEADER & NAVIGATION
-   =================================================== */
-.site-header {
-    background: #005baa;
-    color: #fff;
-    padding: 15px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.site-header .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.site-logo h1 {
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.site-logo a {
-    color: #fff;
-}
-
-.search-box-header {
-    display: flex;
-    align-items: center;
-}
-
-.search-box-header input[type="search"] {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-    font-size: 14px;
-    outline: none;
-    width: 260px;
-}
-
-.search-box-header button {
-    padding: 8px 16px;
-    background: #ff9800;
-    color: #fff;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.search-box-header button:hover {
-    background: #e68900;
-}
-
-/* ===================================================
-   3. MAIN CONTENT
-   =================================================== */
-.site-main {
-    padding: 35px 0 60px;
-    min-height: calc(100vh - 220px);
-}
-
-/* ===================================================
-   4. MODULE 5: SEARCH RESULT CARD (FIT TDC STYLE)
-   =================================================== */
-.search-header-info {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #005baa;
-}
-
-.search-header-info h2 {
-    font-size: 22px;
-    color: #005baa;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.search-results-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-/* Thẻ tin tức ngang */
-.search-post-card {
-    display: flex;
-    align-items: flex-start;
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    padding: 16px;
-    gap: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.search-post-card:hover {
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-}
-
-/* Cột 1: Ảnh đại diện */
-.search-post-thumbnail {
-    flex: 0 0 220px;
-    max-width: 220px;
-    height: 140px;
-    overflow: hidden;
+.custom-search-input {
     border-radius: 4px;
-    background: #eee;
-}
-
-.search-post-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.search-post-thumbnail:hover img {
-    transform: scale(1.05);
-}
-
-/* Cột 2: Khối Ngày Tháng (Date Badge) */
-.search-post-date-badge {
-    flex: 0 0 75px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 5px 0;
-    border-right: 1px solid #eee;
-    padding-right: 15px;
-}
-
-.search-post-date-badge .badge-day {
-    font-size: 36px;
-    font-weight: 800;
-    color: #1a202c;
-    line-height: 1;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-.search-post-date-badge .badge-month {
-    font-size: 11px;
-    font-weight: 700;
-    color: #718096;
-    text-transform: uppercase;
-    margin-top: 4px;
-    letter-spacing: 0.5px;
-}
-
-/* Cột 3: Tiêu đề và Tóm tắt */
-.search-post-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.search-post-title {
-    font-size: 16px;
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.4;
-    margin-bottom: 8px;
-}
-
-.search-post-title a {
-    color: #005baa;
-}
-
-.search-post-title a:hover {
-    color: #d32f2f;
-}
-
-.search-post-excerpt {
-    font-size: 13.5px;
-    color: #4a5568;
-    line-height: 1.6;
-}
-
-.search-post-excerpt p {
-    margin: 0;
-}
-
-/* Không tìm thấy bài viết */
-.no-results {
-    background: #fff;
-    padding: 30px;
-    text-align: center;
-    border-radius: 6px;
-    border: 1px dashed #cbd5e1;
-    font-size: 16px;
-    color: #64748b;
-}
-
-/* ===================================================
-   5. FOOTER
-   =================================================== */
-.site-footer {
-    background: #1e293b;
-    color: #94a3b8;
-    padding: 25px 0;
-    text-align: center;
+    border: 1px solid #ced4da;
     font-size: 14px;
 }
 
-/* ===================================================
-   6. RESPONSIVE MOBILE
-   =================================================== */
-@media (max-width: 768px) {
-    .search-post-card {
-        flex-direction: column;
-    }
+.custom-search-btn {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #495057;
+    font-size: 14px;
+}
 
-    .search-post-thumbnail {
-        flex: 0 0 auto;
-        max-width: 100%;
-        width: 100%;
-        height: 180px;
-    }
+.custom-search-btn:hover {
+    background-color: #e9ecef;
+}
 
-    .search-post-date-badge {
-        flex-direction: row;
-        gap: 10px;
-        border-right: none;
-        border-bottom: 1px solid #eee;
-        width: 100%;
-        padding-bottom: 8px;
-    }
+.header-icon-link {
+    color: #495057;
+    text-align: center;
+    padding: 0 10px;
+    text-decoration: none;
+    display: inline-block;
+}
 
-    .search-post-date-badge .badge-day {
-        font-size: 24px;
-    }
+.header-icon-link:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.header-icon-link small {
+    display: block;
+    font-size: 11px;
+    margin-top: 2px;
 }
