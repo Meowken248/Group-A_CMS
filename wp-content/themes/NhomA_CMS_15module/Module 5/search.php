@@ -9,118 +9,146 @@
  */
 ?>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
     /* ===================================================
-   CSS MODULE 5: THẺ TIN TỨC CHUẨN MẪU FIT TDC
-   =================================================== */
+       CSS MODULE 5: THẺ TIN TỨC CHUẨN MẪU FIT TDC
+       =================================================== */
     .fit-search-container {
-        max-width: 980px;
-        margin: 25px auto 40px;
+        max-width: 920px;
+        margin: 30px auto 50px;
         padding: 0 15px;
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    /* Thẻ tin tức (Card) */
+    /* Thẻ tin tức (Card) - Khung viền mỏng phẳng, không padding để ảnh ôm sát mép ngoài */
     .fit-search-item {
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
         background: #ffffff;
-        border: 1px solid #e2e8f0;
-        margin-bottom: 20px;
-        padding: 16px;
+        border: 1px solid #e0e0e0;
+        margin-bottom: 24px;
+        padding: 0;
+        overflow: hidden;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        transition: all 0.2s ease-in-out;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .fit-search-item:hover {
         border-color: #cbd5e1;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    /* CỘT 1: ẢNH ĐẠI DIỆN BÀI VIẾT (THUMBNAIL) */
+    /* CỘT 1: ẢNH ĐẠI DIỆN (THUMBNAIL) - 340px ôm sát mép trên/trái */
     .fit-search-thumb {
-        flex: 0 0 255px;
-        width: 255px;
-        height: 145px;
+        flex: 0 0 340px;
+        width: 340px;
+        align-self: flex-start;
+        margin: 0;
         overflow: hidden;
-        margin-right: 18px;
-        background-color: #f1f5f9;
+        background-color: #f8fafc;
+        line-height: 0;
     }
 
     .fit-search-thumb a {
         display: block;
         width: 100%;
-        height: 100%;
+        line-height: 0;
     }
 
     .fit-search-thumb img,
     .fit-search-thumb svg {
         width: 100%;
-        height: 100%;
+        height: 190px;
         object-fit: cover;
         display: block;
+        border: none;
     }
 
     /* CỘT 2: KHỐI NGÀY - THÁNG (DATE BADGE) */
     .fit-search-date {
-        flex: 0 0 75px;
-        width: 75px;
+        flex: 0 0 150px;
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 36px;
         text-align: center;
-        margin-right: 20px;
-        padding-right: 18px;
-        border-right: 1px solid #e5e7eb;
-        padding-top: 0;
+        background: #ffffff;
+        user-select: none;
     }
 
     .fit-search-date .date-number {
-        font-size: 38px;
+        font-size: 50px;
         font-weight: 400;
-        color: #222222;
+        color: #1a1a1a;
         line-height: 1;
-        margin-bottom: 2px;
-        font-family: Georgia, "Times New Roman", Times, serif;
+        margin-bottom: 8px;
+        font-family: "Times New Roman", Times, Georgia, serif;
     }
 
     .fit-search-date .date-text {
-        font-size: 11px;
+        font-size: 11.5px;
         font-weight: 600;
-        color: #888888;
+        color: #8c8c8c;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.8px;
         white-space: nowrap;
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    /* CỘT 3: TIÊU ĐỀ & TÓM TẮT */
+    /* CỘT 3: TIÊU ĐỀ & TÓM TẮT (CÓ ĐƯỜNG PHÂN CÁCH DỌC TRÁI) */
     .fit-search-content {
         flex: 1;
         min-width: 0;
+        position: relative;
+        padding: 30px 28px 28px 26px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    /* Đường kẻ phân cách dọc giữa khối ngày và nội dung */
+    .fit-search-content::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 20px;
+        bottom: 20px;
+        width: 1px;
+        background-color: #cbd5e1;
     }
 
     .fit-search-title {
-        margin: 0 0 8px 0;
-        font-size: 15px;
+        margin: 0 0 16px 0;
+        font-size: 18px;
         font-weight: 700;
-        line-height: 1.4;
+        line-height: 1.38;
         text-transform: uppercase;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .fit-search-title a {
-        color: #337ab7;
-        /* Màu xanh chuẩn Bootstrap/TDC như trong ảnh mẫu */
+        color: #0174c6;
         text-decoration: none;
+        transition: color 0.15s ease;
     }
 
     .fit-search-title a:hover {
-        color: #23527c;
-        text-decoration: underline;
+        color: #0056b3;
+        text-decoration: none;
     }
 
     .fit-search-excerpt {
-        font-size: 13px;
-        color: #666666;
-        line-height: 1.55;
+        font-size: 13.5px;
+        color: #707070;
+        line-height: 1.6;
         margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .fit-search-excerpt p {
@@ -128,9 +156,9 @@
         display: inline;
     }
 
-    /* Phân trang */
+    /* PHÂN TRANG */
     .fit-search-pagination {
-        margin-top: 25px;
+        margin-top: 30px;
         text-align: center;
     }
 
@@ -140,16 +168,16 @@
         margin: 0 2px;
         background: #ffffff;
         border: 1px solid #dddddd;
-        color: #337ab7;
+        color: #0174c6;
         text-decoration: none;
         font-size: 13px;
         border-radius: 3px;
     }
 
     .fit-search-pagination .page-numbers.current {
-        background: #337ab7;
+        background: #0174c6;
         color: #ffffff;
-        border-color: #337ab7;
+        border-color: #0174c6;
     }
 
     @media (max-width: 768px) {
@@ -159,22 +187,34 @@
 
         .fit-search-thumb {
             width: 100%;
-            max-width: 100%;
-            height: 180px;
-            margin-right: 0;
-            margin-bottom: 12px;
+            height: auto;
+            flex: none;
+        }
+
+        .fit-search-thumb img {
+            height: 200px;
+        }
+
+        .fit-search-content::before {
+            display: none;
         }
 
         .fit-search-date {
             flex-direction: row;
             width: 100%;
-            text-align: left;
-            margin-bottom: 8px;
-            gap: 10px;
+            justify-content: flex-start;
+            padding: 12px 18px;
+            gap: 12px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         .fit-search-date .date-number {
-            font-size: 24px;
+            font-size: 32px;
+            margin-bottom: 0;
+        }
+
+        .fit-search-content {
+            padding: 18px;
         }
     }
 </style>
@@ -183,6 +223,11 @@
     <?php if (have_posts()) : ?>
         <?php while (have_posts()) : the_post(); ?>
             <?php
+            // Bỏ qua page (chỉ hiển thị tin tức / post để khớp mẫu)
+            if (get_post_type() !== 'post') {
+                continue;
+            }
+
             // ==========================================================
             // ÁP DỤNG ĐÚNG CÁC ĐOẠN CODE GỢI Ý CỦA GIẢNG VIÊN TRONG ĐỀ BÀI
             // ==========================================================
@@ -202,8 +247,7 @@
                         <?php if (has_post_thumbnail()) : ?>
                             <?php the_post_thumbnail('medium'); ?>
                         <?php else : ?>
-                            <!-- Ảnh mặc định khi bài viết trong DB chưa được gán Featured Image -->
-                            <img src="https://via.placeholder.com/260x150?text=FIT-TDC" alt="<?php the_title_attribute(); ?>">
+                            <img src="https://via.placeholder.com/340x190?text=FIT-TDC" alt="<?php the_title_attribute(); ?>">
                         <?php endif; ?>
                     </a>
                 </div>
@@ -228,7 +272,6 @@
             </article>
         <?php endwhile; ?>
 
-        <!-- Phân trang -->
         <div class="fit-search-pagination">
             <?php
             the_posts_pagination(array(

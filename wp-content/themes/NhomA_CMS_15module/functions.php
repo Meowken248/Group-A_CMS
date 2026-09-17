@@ -23,3 +23,16 @@ function nhom_a_enqueue_scripts()
     wp_enqueue_style('nhom-a-main-style', get_stylesheet_uri(), array(), '1.0');
 }
 add_action('wp_enqueue_scripts', 'nhom_a_enqueue_scripts');
+
+/**
+ * Cấu hình kết quả tìm kiếm: chỉ tìm trong bài viết (post) và sắp xếp theo ngày mới nhất trước
+ */
+function nhom_a_search_filter($query)
+{
+    if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+        $query->set('post_type', 'post');
+        $query->set('orderby', 'date');
+        $query->set('order', 'DESC');
+    }
+}
+add_action('pre_get_posts', 'nhom_a_search_filter');
