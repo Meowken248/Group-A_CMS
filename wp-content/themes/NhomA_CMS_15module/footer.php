@@ -1,13 +1,13 @@
-    </div><!-- .site-container -->
-    </main><!-- .site-main -->
+<?php
+/**
+ * The template for displaying the footer
+ * Nạp Module 3: Footer (Bootsnipp rlXdE)
+ */
 
-    <footer class="site-footer">
-        <div class="site-container">
-            <p>&copy; <?php echo date('Y'); ?> - <strong>Nhóm A CMS (15 Modules)</strong> - Khoa Công Nghệ Thông Tin (FIT TDC).</p>
-        </div>
-    </footer>
+// Nạp trực tiếp từ thư mục Moudle3 đã tạo sẵn
+include get_template_directory() . '/Moudle3/test.php';
 
-    <?php wp_footer(); ?>
-    </body>
-
-    </html>
+wp_footer();
+?>
+</body>
+</html>
