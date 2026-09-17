@@ -60,3 +60,20 @@ function nhom_a_module_14_shortcode($atts)
 add_shortcode('module_14_comments', 'nhom_a_module_14_shortcode');
 add_shortcode('module_14', 'nhom_a_module_14_shortcode');
 
+/**
+ * Đăng ký Shortcode [module_15_last_posts] và [module_15]
+ * Cho phép chèn giao diện Module 15 (Timeline Latest News) vào bất kỳ đâu
+ */
+function nhom_a_module_15_shortcode($atts)
+{
+    ob_start();
+    $module15_file = get_template_directory() . '/15/test.php';
+    if (file_exists($module15_file)) {
+        include $module15_file;
+    }
+    return ob_get_clean();
+}
+add_shortcode('module_15_last_posts', 'nhom_a_module_15_shortcode');
+add_shortcode('module_15', 'nhom_a_module_15_shortcode');
+
+
