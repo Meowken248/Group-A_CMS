@@ -19,7 +19,7 @@
 <!-- HEADER / NAVBAR MODULE -->
 <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
     <!-- Tên nhóm -->
-    <a class="navbar-brand font-weight-bold mr-4 text-dark" href="<?php echo esc_url(home_url('/')); ?>">Group C</a>
+    <a class="navbar-brand font-weight-bold mr-4 text-dark" href="<?php echo esc_url(home_url('/')); ?>">Group </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
         <span class="navbar-toggler-icon"></span>
