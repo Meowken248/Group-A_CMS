@@ -1,14 +1,27 @@
-<?php get_header(); ?>
+<?php
+/**
+ * Index Template - NhomA_CMS_15module
+ * Hiển thị giao diện chính tích hợp các Module
+ */
+
+get_header();
+?>
 
 <!-- NẠP MODULE 2: CONTENT (DANH SÁCH BÀI VIẾT TIN TỨC CHUẨN FIT-TDC) -->
 <?php
-// Nạp trực tiếp Module 2: Content
-include get_template_directory() . '/Module2/test.php';
+$module2_path = get_template_directory() . '/Module2/test.php';
+if (file_exists($module2_path)) {
+    include $module2_path;
+}
 ?>
 
-<!-- Tải thư viện JS cho Bootstrap Dropdown hoạt động -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- NẠP TRỰC TIẾP MODULE 13 TỪ THƯ MỤC 13/TEST.PHP NẾU CÓ -->
+<?php
+$module13_path = get_template_directory() . '/13/test.php';
+if (file_exists($module13_path)) {
+    include $module13_path;
+}
+?>
 
-<!-- NẠP MODULE 3: FOOTER -->
-<?php get_footer(); ?>
+<?php
+get_footer();
