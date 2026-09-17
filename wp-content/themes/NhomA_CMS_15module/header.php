@@ -47,6 +47,24 @@
 
         <!-- Khu vực bên phải: Menu, Icons, Dropdown Account -->
         <ul class="navbar-nav ml-auto align-items-center">
+            <!-- Dropdown Modules Nhóm A -->
+            <li class="nav-item dropdown mr-2">
+                <a class="nav-link dropdown-toggle text-primary font-weight-bold px-2" href="#" id="modulesMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-cubes"></i> Modules
+                </a>
+                <div class="dropdown-menu shadow-sm" aria-labelledby="modulesMenu">
+                    <a class="dropdown-item" href="<?php echo esc_url(home_url('/')); ?>">
+                        <strong>Module 13:</strong> Pages (Trang đào tạo)
+                    </a>
+                    <a class="dropdown-item" href="<?php echo esc_url(home_url('/?p=1')); ?>">
+                        <strong>Module 14:</strong> Comments (Bình luận)
+                    </a>
+                    <a class="dropdown-item" href="<?php echo esc_url(home_url('/?s=workshop')); ?>">
+                        <strong>Module 5:</strong> Search Results (Tìm kiếm)
+                    </a>
+                </div>
+            </li>
+
             <li class="nav-item"><a class="nav-link text-secondary px-2" href="#">Thể thao</a></li>
             <li class="nav-item"><a class="nav-link text-secondary px-2" href="#">Khoa học</a></li>
             <li class="nav-item"><a class="nav-link text-secondary px-2" href="#">Tin tức</a></li>

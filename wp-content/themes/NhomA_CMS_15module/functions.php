@@ -43,3 +43,20 @@ function nhom_a_module_13_shortcode($atts)
 }
 add_shortcode('module_13_pages', 'nhom_a_module_13_shortcode');
 add_shortcode('module_13', 'nhom_a_module_13_shortcode');
+
+/**
+ * Đăng ký Shortcode [module_14_comments] và [module_14]
+ * Cho phép chèn giao diện Module 14 vào bất kỳ bài viết hoặc trang nào
+ */
+function nhom_a_module_14_shortcode($atts)
+{
+    ob_start();
+    $module14_file = get_template_directory() . '/14/test.php';
+    if (file_exists($module14_file)) {
+        include $module14_file;
+    }
+    return ob_get_clean();
+}
+add_shortcode('module_14_comments', 'nhom_a_module_14_shortcode');
+add_shortcode('module_14', 'nhom_a_module_14_shortcode');
+
