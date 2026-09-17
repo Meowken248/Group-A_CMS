@@ -1,16 +1,16 @@
-<?php
-get_header();
-?>
+<?php get_header(); ?>
 
-<div style="background: #fff; padding: 40px; border-radius: 6px; border: 1px solid #e2e8f0; text-align: center; margin: 30px 0;">
-    <h2 style="color: #005baa; text-transform: uppercase; margin-bottom: 15px;">Dự án Website WordPress - Nhóm A CMS (15 Modules)</h2>
-    <p style="font-size: 16px; color: #475569; max-width: 700px; margin: 0 auto 25px;">
-        Hệ thống được phát triển bởi các thành viên Nhóm A. Hãy sử dụng thanh tìm kiếm ở góc trên để trải nghiệm <strong>Module 5: Search Result</strong>.
-    </p>
-    <div style="display: inline-block; padding: 12px 24px; background: #e0f2fe; color: #0369a1; border-radius: 5px; font-weight: 600;">
-        🔍 Thử tìm kiếm từ khóa: <em>workshop</em> hoặc <em>phỏng vấn</em>
+<div class="container my-5">
+    <div class="alert alert-success text-center" role="alert">
+        <h4>Chào mừng bạn đến với WordPress Theme của Nhóm A!</h4>
+        <p class="mb-0">Module Header đã được nạp thành công.</p>
     </div>
 </div>
 
-<?php
-get_footer();
+<!-- Tải thư viện JS cho Bootstrap Dropdown hoạt động -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<?php wp_footer(); ?>
+</body>
+</html>
