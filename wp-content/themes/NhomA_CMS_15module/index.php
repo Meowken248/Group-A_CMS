@@ -1,11 +1,10 @@
 <?php get_header(); ?>
 
-<div class="container my-5">
-    <div class="alert alert-success text-center" role="alert">
-        <h4>Chào mừng bạn đến với WordPress Theme của Nhóm A!</h4>
-        <p class="mb-0">Module Header đã được nạp thành công.</p>
-    </div>
-</div>
+<!-- NẠP MODULE 2: CONTENT (DANH SÁCH BÀI VIẾT TIN TỨC CHUẨN FIT-TDC) -->
+<?php
+// Nạp trực tiếp Module 2: Content
+include get_template_directory() . '/Module2/test.php';
+?>
 
 <!-- Tải thư viện JS cho Bootstrap Dropdown hoạt động -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
