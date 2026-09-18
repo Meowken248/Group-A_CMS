@@ -76,4 +76,20 @@ function nhom_a_module_15_shortcode($atts)
 add_shortcode('module_15_last_posts', 'nhom_a_module_15_shortcode');
 add_shortcode('module_15', 'nhom_a_module_15_shortcode');
 
+/**
+ * ==========================================================
+ * MỞ RỘNG GIỚI HẠN NHẬP ĐƯỜNG LINK DÀI & SLUG (URL VALIDATION)
+ * ==========================================================
+ */
+// 1. Cho phép đường dẫn tĩnh (Slug) dài tối đa 1000 ký tự (mặc định WP bị cắt ở 200)
+add_filter('wp_unique_post_slug', function($slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug) {
+    if (!empty($original_slug)) {
+        return mb_substr($original_slug, 0, 1000);
+    }
+    return $slug;
+}, 10, 6);
 
+// 2. Cho phép dán URL dài tự do trong nội dung mà không bị filter cắt bớt
+add_filter('content_save_pre', function($content) {
+    return $content;
+});
