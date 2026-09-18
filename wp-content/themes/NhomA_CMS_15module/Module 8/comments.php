@@ -18,12 +18,19 @@ if (post_password_required()) {
 <style>
     /* ===================================================
        CSS MODULE 8: GIAO DIỆN BÌNH LUẬN CHUẨN BOOTSNIPP rNEdR
+       ĐÃ GIA CỐ PHÒNG THỦ CHỐNG VỠ KHUNG (DEFENSIVE CSS)
        =================================================== */
+    .fit-comments-area,
+    .fit-comments-area * {
+        box-sizing: border-box;
+    }
+
     .fit-comments-area {
         margin-top: 35px;
         padding-top: 25px;
         border-top: 1px solid #e2e8f0;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        max-width: 100%;
     }
 
     /* TIÊU ĐỀ KHỐI BÌNH LUẬN */
@@ -54,6 +61,7 @@ if (post_password_required()) {
         margin-bottom: 30px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         overflow: hidden;
+        max-width: 100%;
     }
 
     .fit-comment-card .card-header {
@@ -113,6 +121,7 @@ if (post_password_required()) {
 
     .fit-comment-textarea {
         width: 100%;
+        max-width: 100%;
         border: 1px solid #ced4da;
         border-radius: 4px;
         padding: 12px 16px;
@@ -120,7 +129,6 @@ if (post_password_required()) {
         color: #495057;
         resize: vertical;
         min-height: 90px;
-        box-sizing: border-box;
         font-family: inherit;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }
@@ -177,6 +185,8 @@ if (post_password_required()) {
         border-radius: 0.25rem;
         margin-bottom: 15px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        overflow: hidden;
+        max-width: 100%;
     }
 
     .fit-comment-item .fit-comment-inner {
@@ -192,12 +202,16 @@ if (post_password_required()) {
     .fit-comment-avatar {
         margin-right: 12px;
         flex-shrink: 0;
+        width: 44px;
+        height: 44px;
     }
 
     .fit-comment-avatar img {
         border-radius: 50%;
         width: 44px;
         height: 44px;
+        max-width: 44px;
+        max-height: 44px;
         object-fit: cover;
         display: block;
     }
@@ -213,6 +227,9 @@ if (post_password_required()) {
         color: #2d3748;
         margin: 0;
         line-height: 1.3;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .fit-comment-time {
@@ -226,6 +243,33 @@ if (post_password_required()) {
         color: #4a5568;
         line-height: 1.6;
         padding-left: 56px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+        max-width: 100%;
+    }
+
+    .fit-comment-content * {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .fit-comment-content img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+    .fit-comment-content pre {
+        max-width: 100%;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-all;
+        background: #f8fafc;
+        padding: 10px 14px;
+        border-radius: 4px;
+        border: 1px solid #e2e8f0;
     }
 
     .fit-comment-content p {
@@ -240,6 +284,11 @@ if (post_password_required()) {
         .fit-comment-content {
             padding-left: 0;
             margin-top: 10px;
+        }
+
+        .fit-comment-actions {
+            flex-wrap: wrap;
+            gap: 10px;
         }
     }
 </style>
@@ -309,11 +358,11 @@ if (post_password_required()) {
 
                     <?php if (!is_user_logged_in()) : ?>
                         <!-- Các trường thông tin bổ sung khi người dùng chưa đăng nhập -->
-                        <div class="row mb-3" style="display: flex; gap: 15px; margin-bottom: 15px;">
-                            <div style="flex: 1;">
+                        <div class="row mb-3" style="display: flex; gap: 15px; margin-bottom: 15px; flex-wrap: wrap;">
+                            <div style="flex: 1 1 220px; min-width: 220px;">
                                 <input type="text" class="form-control" name="author" placeholder="Họ và tên *" required style="width: 100%; border: 1px solid #ced4da; border-radius: 4px; padding: 10px 14px; box-sizing: border-box;">
                             </div>
-                            <div style="flex: 1;">
+                            <div style="flex: 1 1 220px; min-width: 220px;">
                                 <input type="email" class="form-control" name="email" placeholder="Email *" required style="width: 100%; border: 1px solid #ced4da; border-radius: 4px; padding: 10px 14px; box-sizing: border-box;">
                             </div>
                         </div>
