@@ -12,19 +12,19 @@
 <!-- Định kiểu CSS riêng cho Module 5 -->
 <style>
     .module-5-search-container {
-        max-width: 1140px;
-        margin: 25px auto;
+        width: 100%;
+        margin-bottom: 25px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     }
 
     .module-5-search-header {
-        margin-bottom: 25px;
-        padding-bottom: 12px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
         border-bottom: 2px solid #005baa;
     }
 
     .module-5-search-header h2 {
-        font-size: 20px;
+        font-size: 16px;
         color: #005baa;
         font-weight: 700;
         text-transform: uppercase;
@@ -34,7 +34,7 @@
     .module-5-search-list {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 14px;
     }
 
     /* Thẻ tin tức ngang */
@@ -45,23 +45,23 @@
         border: 1px solid #e2e8f0;
         border-radius: 5px;
         overflow: hidden;
-        padding: 16px;
-        gap: 20px;
+        padding: 12px;
+        gap: 12px;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-        transition: all 0.25s ease-in-out;
+        transition: all 0.2s ease-in-out;
     }
 
     .module-5-post-card:hover {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
         border-color: #cbd5e1;
         transform: translateY(-2px);
     }
 
     /* 1. Cột Ảnh đại diện */
     .module-5-thumb {
-        flex: 0 0 240px;
-        width: 240px;
-        height: 140px;
+        flex: 0 0 130px;
+        width: 130px;
+        height: 95px;
         overflow: hidden;
         border-radius: 4px;
         background: #f1f5f9;
@@ -87,18 +87,18 @@
 
     /* 2. Cột Khối Ngày - Tháng */
     .module-5-date-badge {
-        flex: 0 0 80px;
+        flex: 0 0 55px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 5px 15px 5px 0;
+        padding: 0 8px 0 0;
         border-right: 1px solid #edf2f7;
     }
 
     .module-5-date-badge .day-number {
-        font-size: 38px;
+        font-size: 26px;
         font-weight: 800;
         color: #1e293b;
         line-height: 1;
@@ -106,11 +106,11 @@
     }
 
     .module-5-date-badge .month-text {
-        font-size: 11px;
+        font-size: 9.5px;
         font-weight: 700;
         color: #64748b;
         text-transform: uppercase;
-        margin-top: 5px;
+        margin-top: 3px;
         letter-spacing: 0.5px;
         white-space: nowrap;
     }
@@ -118,16 +118,21 @@
     /* 3. Cột Tiêu đề & Nội dung tóm tắt */
     .module-5-content {
         flex: 1;
+        min-width: 0;
         display: flex;
         flex-direction: column;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
     .module-5-title {
-        margin: 0 0 10px 0;
-        font-size: 16px;
+        margin: 0 0 6px 0;
+        font-size: 14px;
         font-weight: 700;
-        line-height: 1.4;
+        line-height: 1.35;
         text-transform: uppercase;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
     .module-5-title a {
@@ -215,7 +220,17 @@
 
 <div class="module-5-search-container">
     <div class="module-5-search-header">
-        <h2>Kết quả tìm kiếm cho: "<?php echo esc_html(get_search_query()); ?>"</h2>
+        <h2>
+            <?php 
+            if (is_search() && get_search_query()) {
+                echo 'Kết quả tìm kiếm cho: "' . esc_html(get_search_query()) . '"';
+            } elseif (is_search()) {
+                echo 'Kết quả tìm kiếm';
+            } else {
+                echo 'Tin tức & Hoạt động đào tạo FIT TDC';
+            }
+            ?>
+        </h2>
     </div>
 
     <div class="module-5-search-list">
