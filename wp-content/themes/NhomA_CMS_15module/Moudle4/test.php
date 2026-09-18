@@ -6,6 +6,7 @@
  * Dự án: Group-A CMS (15 Modules) - Khoa CNTT FIT-TDC
  * Đường dẫn: wp-content/themes/NhomA_CMS_15module/Moudle4/test.php
  * Thiết kế chuẩn Bootsnipp 35V6b theo đúng ảnh mẫu (từ Hình 1 sang Hình 2)
+ * Tích hợp tính năng chống tràn từ khóa dài và chống bể khung hình ảnh
  * ==========================================================
  */
 
@@ -42,6 +43,19 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         margin: 50px auto 70px auto;
         padding: 0 15px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        box-sizing: border-box;
+    }
+
+    .module-4-search-section * {
+        box-sizing: border-box;
+    }
+
+    /* Đảm bảo toàn bộ hình ảnh trong Module 4 không bị tràn khung */
+    .module-4-search-section img,
+    .module-4-card img {
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
     }
 
     .module-4-card {
@@ -50,6 +64,8 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         overflow: hidden;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
         border: 1px solid #eef0f2;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* 1. Phần trên nền trắng: Tiêu đề & Thông báo */
@@ -57,6 +73,7 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         padding: 45px 25px 35px 25px;
         text-align: center;
         background-color: #ffffff;
+        overflow: hidden;
     }
 
     .module-4-title {
@@ -64,6 +81,9 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         font-weight: 700;
         margin: 0 0 14px 0;
         letter-spacing: -0.2px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     /* Chữ "Search:" màu đỏ nổi bật chuẩn Hình 2 */
@@ -71,9 +91,11 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         color: #d90429;
     }
 
-    /* Từ khóa trong ngoặc kép màu đen đậm chuẩn Hình 2 */
+    /* Từ khóa trong ngoặc kép màu đen đậm - chống tràn kể cả chuỗi URL siêu dài */
     .module-4-title .text-query {
         color: #111827;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
     /* Dòng mô tả thông báo không tìm thấy kết quả chuẩn 2 dòng như Hình 2 */
@@ -83,6 +105,9 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         line-height: 1.6;
         max-width: 530px;
         margin: 0 auto;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     /* 2. Phần dưới nền màu be (Warm Beige Banner) của Bootsnipp 35V6b */
@@ -92,6 +117,8 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     /* 3. Khung tìm kiếm màu trắng (White Search Bar) */
@@ -106,6 +133,8 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         padding: 6px 8px 6px 18px;
         border: 1px solid #ffffff;
         transition: box-shadow 0.2s ease;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .module-4-search-form:focus-within {
@@ -125,13 +154,13 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
     /* Ô input nhập từ khóa */
     .module-4-search-input {
         flex: 1;
+        min-width: 0;
         border: none;
         outline: none;
         background: transparent;
         font-size: 15.5px;
         color: #222222;
         padding: 8px 0;
-        min-width: 0;
     }
 
     .module-4-search-input::placeholder {
@@ -152,6 +181,7 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         cursor: pointer;
         flex-shrink: 0;
         transition: background-color 0.2s ease, transform 0.1s ease;
+        white-space: nowrap;
     }
 
     .module-4-search-btn:hover {
@@ -181,21 +211,26 @@ $display_keyword = !empty($search_query) ? $search_query : 'abc';
         }
 
         .module-4-search-form {
-            padding: 5px 6px 5px 12px;
+            flex-wrap: wrap;
+            padding: 8px 10px;
+            gap: 8px;
         }
 
         .module-4-search-icon {
-            font-size: 16px;
-            margin-right: 10px;
+            display: none;
         }
 
         .module-4-search-input {
             font-size: 14px;
+            width: 100%;
+            flex: 1 1 100%;
         }
 
         .module-4-search-btn {
             padding: 8px 18px;
             font-size: 14px;
+            width: 100%;
+            flex: 1 1 100%;
         }
     }
 </style>

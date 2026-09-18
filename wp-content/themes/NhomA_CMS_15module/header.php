@@ -20,8 +20,14 @@
 
     <!-- HEADER / NAVBAR MODULE -->
     <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
-        <!-- Tên nhóm -->
-        <a class="navbar-brand font-weight-bold mr-4 text-dark" href="<?php echo esc_url(home_url('/')); ?>">Group A</a>
+        <!-- Tên nhóm / Logo -->
+        <?php if (function_exists('has_custom_logo') && has_custom_logo()) : ?>
+            <?php the_custom_logo(); ?>
+        <?php else : ?>
+            <a class="navbar-brand font-weight-bold mr-4 text-dark" href="<?php echo esc_url(home_url('/')); ?>">
+                <?php echo esc_html(get_bloginfo('name') ? get_bloginfo('name') : 'Group A'); ?>
+            </a>
+        <?php endif; ?>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
             <span class="navbar-toggler-icon"></span>

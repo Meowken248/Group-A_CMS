@@ -7,9 +7,29 @@
  * Đường dẫn: wp-content/themes/NhomA_CMS_15module/Moudle3/test.php
  * Thiết kế chuẩn Bootsnipp rlXdE (Footer with social icons & links)
  * Dữ liệu động từ Database: Comment, Categories, Last Posts
+ * Tích hợp tính năng chống tràn chữ và chống bể khung hình ảnh
  * ==========================================================
  */
+
+// Tự động nạp môi trường WordPress nếu người dùng mở trực tiếp test.php trên trình duyệt
+if (!function_exists('get_header')) {
+    $wp_load_path = dirname(__DIR__, 4) . '/wp-load.php';
+    if (file_exists($wp_load_path)) {
+        require_once $wp_load_path;
+    }
+}
+
+$is_standalone = !did_action('get_header');
+if ($is_standalone && function_exists('get_header')) {
+    get_header();
+}
 ?>
+
+<?php if ($is_standalone) : ?>
+<!-- Nạp CSS bổ sung khi xem độc lập -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<?php endif; ?>
 
 <!-- Định kiểu CSS riêng cho Module 3: Footer (Bootsnipp rlXdE) -->
 <style>
@@ -20,6 +40,20 @@
         padding-bottom: 25px;
         margin-top: 50px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        box-sizing: border-box;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #footer * {
+        box-sizing: border-box;
+    }
+
+    /* Đảm bảo toàn bộ hình ảnh trong footer không bao giờ tràn khung */
+    #footer img {
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain;
     }
 
     #footer h5 {
@@ -32,6 +66,9 @@
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     #footer a {
@@ -45,16 +82,18 @@
         padding-left: 0;
         list-style: none;
         margin-bottom: 20px;
+        width: 100%;
     }
 
     #footer ul.quick-links li {
-        padding: 5px 0;
+        padding: 6px 0;
         transition: all 0.25s ease-in-out;
         font-size: 14px;
         line-height: 1.5;
-        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
     }
 
     #footer ul.quick-links li:hover {
@@ -64,11 +103,13 @@
 
     #footer ul.quick-links li a {
         color: #ffffff;
-        display: inline-block;
+        display: block;
         max-width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        overflow-wrap: break-word;
+        word-break: break-word;
     }
 
     #footer ul.quick-links li a:hover {
@@ -117,15 +158,24 @@
         color: #ffffff;
         font-size: 13px;
         line-height: 1.6;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     #footer .footer-bottom-text p {
         margin-bottom: 6px;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     #footer .footer-bottom-text a {
         color: #ffffff;
         text-decoration: underline !important;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     #footer .footer-bottom-text a:hover {
@@ -162,7 +212,7 @@
     <div class="container">
         <div class="row text-center text-xs-center text-sm-left text-md-left">
             <!-- CỘT 1: BÌNH LUẬN MỚI (COMMENTS) -->
-            <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 mb-3">
                 <h5>Bình luận mới</h5>
                 <ul class="list-unstyled quick-links">
                     <?php
@@ -175,11 +225,13 @@
                     if (!empty($recent_comments)) :
                         foreach ($recent_comments as $comment) :
                             $author = get_comment_author($comment);
-                            $comment_text = wp_trim_words($comment->comment_content, 6, '...');
+                            // Lọc bỏ HTML/hình ảnh khỏi comment preview để không làm bể cấu trúc thẻ <a>
+                            $clean_comment_text = wp_strip_all_tags($comment->comment_content);
+                            $comment_text = wp_trim_words($clean_comment_text, 7, '...');
                             $comment_url = get_comment_link($comment);
                     ?>
                             <li>
-                                <a href="<?php echo esc_url($comment_url); ?>" title="<?php echo esc_attr($author . ': ' . $comment->comment_content); ?>">
+                                <a href="<?php echo esc_url($comment_url); ?>" title="<?php echo esc_attr($author . ': ' . $clean_comment_text); ?>">
                                     <i class="fa fa-angle-double-right"></i> <?php echo esc_html($author); ?>: <?php echo esc_html($comment_text); ?>
                                 </a>
                             </li>
@@ -195,7 +247,7 @@
             </div>
 
             <!-- CỘT 2: CHUYÊN MỤC (CATEGORIES) -->
-            <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 mb-3">
                 <h5>Chuyên mục</h5>
                 <ul class="list-unstyled quick-links">
                     <?php
@@ -227,7 +279,7 @@
             </div>
 
             <!-- CỘT 3: BÀI VIẾT MỚI (LAST POSTS) -->
-            <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="col-xs-12 col-sm-4 col-md-4 mb-3">
                 <h5>Bài viết mới</h5>
                 <ul class="list-unstyled quick-links">
                     <?php
@@ -243,7 +295,7 @@
                     ?>
                             <li>
                                 <a href="<?php echo esc_url($post_url); ?>" title="<?php echo esc_attr($post_title); ?>">
-                                    <i class="fa fa-angle-double-right"></i> <?php echo esc_html(wp_trim_words($post_title, 6, '...')); ?>
+                                    <i class="fa fa-angle-double-right"></i> <?php echo esc_html(wp_trim_words($post_title, 7, '...')); ?>
                                 </a>
                             </li>
                         <?php
@@ -284,3 +336,10 @@
         </div>
     </div>
 </section>
+
+<?php
+if ($is_standalone && function_exists('wp_footer')) {
+    wp_footer();
+    echo '</body></html>';
+}
+?>
