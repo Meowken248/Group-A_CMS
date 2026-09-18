@@ -46,7 +46,7 @@ if ($is_standalone && function_exists('get_header')) {
     /* 3. Thẻ tin tức ngang (Card) */
     .fit-post-card {
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
         background: #ffffff;
         border: 1px solid #e2e8f0;
         border-radius: 4px;
@@ -68,16 +68,22 @@ if ($is_standalone && function_exists('get_header')) {
     .fit-date-box {
         flex: 0 0 95px;
         width: 95px;
+        min-width: 95px;
+        max-width: 95px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         text-align: center;
         padding-right: 18px;
         margin-right: 20px;
         border-right: 1px solid #e2e8f0;
         flex-shrink: 0;
         user-select: none;
+        align-self: stretch;
+        padding-top: 2px;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .fit-date-box .fit-date-day {
@@ -87,6 +93,8 @@ if ($is_standalone && function_exists('get_header')) {
         color: #1e293b;
         margin-bottom: 4px;
         letter-spacing: -0.5px;
+        white-space: nowrap;
+        text-align: center;
     }
 
     .fit-date-box .fit-date-month {
@@ -96,6 +104,8 @@ if ($is_standalone && function_exists('get_header')) {
         text-transform: uppercase;
         letter-spacing: 0.5px;
         white-space: nowrap;
+        text-align: center;
+        display: block;
     }
 
     /* Cột Ảnh đại diện (Thumbnail) nếu có */
@@ -109,6 +119,7 @@ if ($is_standalone && function_exists('get_header')) {
         border-radius: 4px;
         background-color: #f1f5f9;
         flex-shrink: 0;
+        align-self: flex-start;
     }
 
     .fit-post-thumb a {
@@ -135,7 +146,11 @@ if ($is_standalone && function_exists('get_header')) {
         min-width: 0;
         overflow: hidden;
         word-wrap: break-word;
-        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
     }
 
     .fit-post-title {
@@ -144,7 +159,7 @@ if ($is_standalone && function_exists('get_header')) {
         line-height: 1.45;
         text-transform: uppercase;
         margin: 0 0 8px 0;
-        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
         word-wrap: break-word;
         word-break: break-word;
     }
@@ -153,7 +168,7 @@ if ($is_standalone && function_exists('get_header')) {
         color: #005baa; /* Mã màu xanh đặc trưng FIT-TDC */
         text-decoration: none;
         transition: color 0.2s ease;
-        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
         word-wrap: break-word;
         word-break: break-word;
     }
@@ -168,7 +183,7 @@ if ($is_standalone && function_exists('get_header')) {
         color: #475569;
         line-height: 1.6;
         margin: 0;
-        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
         word-wrap: break-word;
         word-break: break-word;
     }
@@ -176,7 +191,7 @@ if ($is_standalone && function_exists('get_header')) {
     .fit-post-excerpt p {
         margin: 0;
         display: inline;
-        overflow-wrap: break-word;
+        overflow-wrap: anywhere;
         word-wrap: break-word;
         word-break: break-word;
     }
@@ -249,21 +264,33 @@ if ($is_standalone && function_exists('get_header')) {
         }
 
         .fit-date-box {
+            flex: none;
             flex-direction: row;
+            align-items: center;
             width: 100%;
+            min-width: 0;
+            max-width: 100%;
             justify-content: flex-start;
-            gap: 10px;
+            gap: 12px;
             padding-right: 0;
+            padding-top: 0;
             margin-right: 0;
             padding-bottom: 10px;
             margin-bottom: 12px;
             border-right: none;
             border-bottom: 1px solid #e2e8f0;
+            align-self: auto;
         }
 
         .fit-date-box .fit-date-day {
             font-size: 26px;
             margin-bottom: 0;
+            white-space: nowrap;
+        }
+
+        .fit-date-box .fit-date-month {
+            font-size: 12px;
+            white-space: nowrap;
         }
 
         .fit-post-thumb {
