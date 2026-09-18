@@ -6,6 +6,18 @@
  * Mô tả: Thành phần giao diện hiển thị danh mục chuyên mục chuẩn theo đề bài
  */
 
+// Khai báo hàm helper an toàn khi chạy standalone ngoài WordPress
+if (!function_exists('esc_html')) {
+    function esc_html($text) {
+        return htmlspecialchars((string)$text, ENT_QUOTES, 'UTF-8');
+    }
+}
+if (!function_exists('esc_url')) {
+    function esc_url($url) {
+        return htmlspecialchars((string)$url, ENT_QUOTES, 'UTF-8');
+    }
+}
+
 // Tự động nạp stylesheet của Module 9
 $module9_css_url = '';
 if (function_exists('get_template_directory_uri')) {

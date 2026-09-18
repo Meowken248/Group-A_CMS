@@ -4,9 +4,10 @@
  * Thành viên thực hiện: Bùi Nguyễn Minh Quân - Module 10 (Recent post)
  */
 
-// Tải môi trường WordPress nếu có
-$wp_load_path = dirname(__DIR__, 4) . '/wp-load.php';
-if (file_exists($wp_load_path)) {
+// Tải môi trường WordPress nếu đã cấu hình (có wp-config.php)
+$wp_config_path = dirname(__DIR__, 4) . '/wp-config.php';
+$wp_load_path   = dirname(__DIR__, 4) . '/wp-load.php';
+if (file_exists($wp_config_path) && file_exists($wp_load_path)) {
     require_once $wp_load_path;
 }
 ?>
