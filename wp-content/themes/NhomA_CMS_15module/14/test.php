@@ -2,32 +2,31 @@
 /**
  * ==========================================================
  * MODULE 14: COMMENTS (BÌNH LUẬN BÀI VIẾT)
- * Đường dẫn: C:\Users\Admin\source\Group-A_CMS\wp-content\themes\NhomA_CMS_15module\14\test.php
- * Thiết kế chuẩn giao diện tin tức / chuyên mục FIT - Cao đẳng Công nghệ Thủ Đức (TDC)
- * Nguồn cảm hứng: Bootsnipp Bootstrap Comment List / Media Object
- * 
- * YÊU CẦU ĐỀ BÀI:
- * - Trước chỉnh sửa: Giao diện bình luận mặc định của WordPress (thô sơ, font chữ nhỏ)
- * - Sau chỉnh sửa:
- *   + Tùy biến từng bình luận thành Card chuyên nghiệp (Bootsnipp style)
- *   + Cột trái: Avatar người dùng (Khối xám có icon người dùng chuẩn nhận diện)
- *   + Cột phải: Họ tên tác giả in đậm (John Doe, Jane Doe) và nội dung bình luận
- *   + Hỗ trợ bình luận phân cấp lồng nhau (Nested / Child Reply): Bình luận phản hồi thụt lùi vào trong
+ * Đường dẫn: wp-content/themes/NhomA_CMS_15module/14/test.php
+ * Thiết kế chuẩn mẫu Bootsnipp gNVj0 theo đúng tài liệu đánh giá (PDF Trang 11)
  * ==========================================================
  */
 
-// Lấy ID bài viết hiện tại hoặc mặc định post #1 ("Hello world!")
-$current_post_id = get_the_ID() ? get_the_ID() : 1;
+if (!function_exists('get_header')) {
+    $wp_load_path = dirname(__DIR__, 4) . '/wp-load.php';
+    if (file_exists($wp_load_path)) {
+        require_once $wp_load_path;
+    }
+}
 
-// Lấy danh sách bình luận đã duyệt
+$module14_is_standalone = !did_action('get_header');
+if ($module14_is_standalone && function_exists('get_header')) {
+    get_header();
+}
+
 $comments_query = get_comments([
-    'post_id' => $current_post_id,
-    'status'  => 'approve',
-    'order'   => 'ASC',
+    'status' => 'approve',
+    'number' => 8,
+    'order'  => 'ASC',
 ]);
 
-// Dữ liệu mẫu dự phòng (Fallback) nếu chưa có bình luận trong CSDL
-$lorem_default = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+// Dữ liệu mẫu dự phòng (Fallback) đúng chuẩn theo ảnh đề bài PDF Trang 11
+$lorem_default = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.";
 
 $fallback_comments = [
     [
@@ -55,293 +54,236 @@ $fallback_comments = [
 ];
 ?>
 
-<!-- Định kiểu CSS riêng cho Module 14 -->
 <style>
-    .module-14-wrapper {
+    .module-14-widget {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        max-width: 1140px;
-        margin: 20px auto;
-    }
-
-    /* Khung chứa bình luận */
-    .module-14-container {
         background: #ffffff;
-        border: 1px solid #dbe2ea;
+        border: 1px solid #e2e8f0;
         border-radius: 6px;
-        padding: 25px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-        margin-bottom: 30px;
+        overflow: hidden;
+        margin-bottom: 25px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     }
 
-    /* Tiêu đề phần bình luận */
-    .module-14-header {
+    .module-14-widget-header {
+        background: #f8fafc;
         border-bottom: 2px solid #005baa;
-        padding-bottom: 12px;
-        margin-bottom: 25px;
+        padding: 10px 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .module-14-title {
-        font-size: 18px;
+    .module-14-widget-title {
+        margin: 0;
+        font-size: 15px;
         font-weight: 700;
         color: #005baa;
         text-transform: uppercase;
-        margin: 0;
+        letter-spacing: 0.5px;
         display: flex;
         align-items: center;
         gap: 8px;
     }
 
-    /* Thẻ bình luận (Comment Card) theo mẫu Bootsnipp */
-    .module-14-card {
+    .module-14-widget-body {
+        padding: 12px;
+    }
+
+    .module-14-list-container {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Thẻ bình luận chuẩn Bootsnipp gNVj0 */
+    .module-14-comment-box {
         background: #ffffff;
         border: 1px solid #e2e8f0;
-        border-radius: 5px;
-        padding: 18px;
-        margin-bottom: 18px;
+        border-radius: 4px;
+        padding: 10px;
         display: flex;
         align-items: flex-start;
-        gap: 18px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        gap: 10px;
+        transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .module-14-card:hover {
+    .module-14-comment-box:hover {
         border-color: #cbd5e1;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     }
 
-    /* Avatar người dùng xám có icon theo mẫu */
-    .module-14-avatar {
-        flex: 0 0 65px;
-        width: 65px;
-        height: 65px;
+    /* Khối vuông avatar màu xám có icon người dùng theo mẫu */
+    .module-14-avatar-box {
+        flex: 0 0 38px;
+        width: 38px;
+        height: 38px;
         background-color: #cbd5e1;
         border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #64748b;
-        font-size: 32px;
+        font-size: 18px;
         overflow: hidden;
     }
 
-    .module-14-avatar img {
+    .module-14-avatar-box img {
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
 
-    /* Nội dung bình luận */
-    .module-14-body {
+    /* Nội dung bình luận bên phải */
+    .module-14-comment-content {
         flex: 1;
+        min-width: 0;
     }
 
-    .module-14-author {
-        font-size: 17px;
+    /* Tên tác giả in đậm */
+    .module-14-author-name {
+        font-size: 13.5px;
         font-weight: 700;
         color: #1e293b;
-        margin: 0 0 8px 0;
+        margin: 0 0 4px 0;
         line-height: 1.3;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
-    .module-14-text {
-        font-size: 14px;
+    /* Đoạn văn bình luận */
+    .module-14-text-body {
+        font-size: 12px;
         color: #475569;
-        line-height: 1.65;
+        line-height: 1.45;
+        margin: 0;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+    }
+
+    .module-14-text-body p {
         margin: 0;
     }
 
-    /* Thanh tác vụ nhỏ dưới bình luận (Trả lời, Thời gian) */
-    .module-14-meta {
-        margin-top: 10px;
-        font-size: 12.5px;
+    .module-14-meta-info {
+        margin-top: 5px;
+        font-size: 11px;
         color: #94a3b8;
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 10px;
     }
 
-    .module-14-reply-btn {
-        color: #005baa;
-        font-weight: 600;
-        text-decoration: none;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        transition: color 0.2s;
-    }
-
-    .module-14-reply-btn:hover {
-        color: #d32f2f;
-        text-decoration: underline;
-    }
-
-    /* BÌNH LUẬN CON (NESTED / REPLY - Jane Doe thụt lề) */
-    .module-14-nested {
-        margin-left: 65px;
-        border-left: 3px solid #e2e8f0;
-        padding-left: 15px;
-    }
-
-    .module-14-nested .module-14-avatar {
-        flex: 0 0 55px;
-        width: 55px;
-        height: 55px;
-        font-size: 26px;
-    }
-
-    /* Form gửi bình luận mới */
-    .module-14-form-box {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
-        padding: 22px;
-        margin-top: 35px;
-    }
-
-    .module-14-form-title {
-        font-size: 16px;
-        font-weight: 700;
-        color: #005baa;
-        margin-bottom: 16px;
+    /* Bình luận con thụt lề vào trong (Nested child comment Jane Doe) */
+    .module-14-nested-replies {
+        margin-left: 18px;
+        border-left: 2px solid #e2e8f0;
+        padding-left: 6px;
+        margin-top: 6px;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         gap: 8px;
     }
 
-    .module-14-form-group {
-        margin-bottom: 14px;
+    .module-14-nested-replies .module-14-avatar-box {
+        flex: 0 0 32px;
+        width: 32px;
+        height: 32px;
+        font-size: 15px;
     }
 
-    .module-14-form-group label {
+    .module-14-nested-replies .module-14-comment-box {
+        padding: 8px;
+    }
+
+    /* Form gửi bình luận nhanh khi xem độc lập */
+    .module-14-quick-form {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 4px;
+        padding: 14px;
+        margin-top: 15px;
+    }
+
+    .module-14-quick-form h5 {
         font-size: 13.5px;
-        font-weight: 600;
-        color: #334155;
-        margin-bottom: 5px;
-        display: block;
+        font-weight: 700;
+        color: #005baa;
+        margin-bottom: 8px;
     }
 
-    .module-14-form-control {
+    .module-14-input {
         width: 100%;
-        padding: 9px 12px;
+        padding: 6px 9px;
         border: 1px solid #cbd5e1;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 12.5px;
+        margin-bottom: 8px;
         outline: none;
-        transition: border-color 0.2s;
     }
 
-    .module-14-form-control:focus {
-        border-color: #005baa;
-        box-shadow: 0 0 0 3px rgba(0, 91, 170, 0.1);
-    }
-
-    .module-14-submit-btn {
-        background-color: #005baa;
+    .module-14-btn-submit {
+        background: #005baa;
         color: #ffffff;
         border: none;
-        padding: 10px 24px;
+        padding: 6px 14px;
         border-radius: 4px;
-        font-size: 14px;
+        font-size: 12.5px;
         font-weight: 600;
         cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-    .module-14-submit-btn:hover {
-        background-color: #004580;
-    }
-
-    .module-14-cancel-reply {
-        display: none;
-        margin-left: 10px;
-        color: #dc2626;
-        font-size: 13px;
-        text-decoration: none;
-    }
-
-    @media (max-width: 768px) {
-        .module-14-card {
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .module-14-nested {
-            margin-left: 20px;
-            padding-left: 10px;
-        }
-
-        .module-14-avatar {
-            width: 48px;
-            height: 48px;
-            font-size: 24px;
-        }
     }
 </style>
 
-<div class="module-14-wrapper">
-    <div class="module-14-container">
-        <div class="module-14-header">
-            <h3 class="module-14-title">
-                <i class="fa-regular fa-comment-dots"></i> Bình luận
-            </h3>
-            <span class="badge badge-primary px-3 py-2" style="background:#005baa; border-radius:12px;">
-                <?php 
-                $count = !empty($comments_query) ? count($comments_query) : 3;
-                echo esc_html($count) . ' bình luận'; 
-                ?>
-            </span>
-        </div>
+<div class="module-14-widget <?php echo ($module14_is_standalone ? 'container my-4' : ''); ?>">
+    <div class="module-14-widget-header">
+        <h3 class="module-14-widget-title">
+            <i class="fa-regular fa-comments"></i> Comments
+        </h3>
+    </div>
 
-        <div class="module-14-list">
+    <div class="module-14-widget-body">
+        <div class="module-14-list-container">
             <?php
-            // Hàm đệ quy render từng bình luận
-            function render_module_14_comment_item($author, $content, $date = '', $comment_id = 0, $is_nested = false) {
-                ?>
-                <div class="module-14-card <?php echo $is_nested ? 'is-nested' : ''; ?>" id="comment-<?php echo esc_attr($comment_id); ?>">
-                    <!-- CỘT TRÁI: AVATAR XÁM CÓ ICON THEO MẪU -->
-                    <div class="module-14-avatar">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
+            if (!function_exists('render_module_14_comment_item')) {
+                function render_module_14_comment_item($author, $content, $date = '', $comment_id = 0, $is_nested = false) {
+                    $trimmed = wp_trim_words($content, 20, '...');
+                    ?>
+                    <div class="module-14-comment-box <?php echo $is_nested ? 'is-nested' : ''; ?>" id="comment-<?php echo esc_attr($comment_id); ?>">
+                        <!-- CỘT TRÁI: AVATAR XÁM CÓ ICON THEO MẪU -->
+                        <div class="module-14-avatar-box">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
 
-                    <!-- CỘT PHẢI: TÊN TÁC GIẢ & NỘI DUNG -->
-                    <div class="module-14-body">
-                        <h4 class="module-14-author"><?php echo esc_html($author); ?></h4>
-                        <div class="module-14-text">
-                            <p><?php echo nl2br(esc_html($content)); ?></p>
-                        </div>
-                        <div class="module-14-meta">
-                            <?php if ($date) : ?>
-                                <span><i class="fa-regular fa-clock"></i> <?php echo esc_html($date); ?></span>
-                            <?php endif; ?>
-                            <a href="#commentFormBox" class="module-14-reply-btn" onclick="prepareReply(<?php echo esc_attr($comment_id); ?>, '<?php echo esc_js($author); ?>')">
-                                <i class="fa-solid fa-reply"></i> Trả lời
-                            </a>
+                        <!-- CỘT PHẢI: TÊN TÁC GIẢ IN ĐẬM & NỘI DUNG -->
+                        <div class="module-14-comment-content">
+                            <h4 class="module-14-author-name"><?php echo esc_html($author); ?></h4>
+                            <div class="module-14-text-body">
+                                <p><?php echo esc_html($trimmed); ?></p>
+                            </div>
+                            <div class="module-14-meta-info">
+                                <?php if ($date) : ?>
+                                    <span><i class="fa-regular fa-clock mr-1"></i><?php echo esc_html($date); ?></span>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <?php
+                    <?php
+                }
             }
 
             if (!empty($comments_query)) {
-                // Nhóm các bình luận theo cha - con
-                $parent_comments = [];
-                $children_comments = [];
+                $m14_parents = [];
+                $m14_children = [];
 
                 foreach ($comments_query as $c) {
                     if ($c->comment_parent == 0) {
-                        $parent_comments[] = $c;
+                        $m14_parents[] = $c;
                     } else {
-                        $children_comments[$c->comment_parent][] = $c;
+                        $m14_children[$c->comment_parent][] = $c;
                     }
                 }
 
-                // Render bình luận cha và con
-                foreach ($parent_comments as $parent) {
+                foreach ($m14_parents as $parent) {
                     render_module_14_comment_item(
                         $parent->comment_author,
                         $parent->comment_content,
@@ -350,10 +292,9 @@ $fallback_comments = [
                         false
                     );
 
-                    // Kiểm tra và render các bình luận con (Nested reply)
-                    if (!empty($children_comments[$parent->comment_ID])) {
-                        echo '<div class="module-14-nested">';
-                        foreach ($children_comments[$parent->comment_ID] as $child) {
+                    if (!empty($m14_children[$parent->comment_ID])) {
+                        echo '<div class="module-14-nested-replies">';
+                        foreach ($m14_children[$parent->comment_ID] as $child) {
                             render_module_14_comment_item(
                                 $child->comment_author,
                                 $child->comment_content,
@@ -366,12 +307,12 @@ $fallback_comments = [
                     }
                 }
             } else {
-                // Hiển thị dữ liệu mẫu nếu chưa có dữ liệu thực tế
+                // FALLBACK CHUẨN ĐÚNG THEO ẢNH ĐỀ BÀI BOOTSNIPP gNVj0 (John Doe, Jane Doe thụt lề, John Doe)
                 foreach ($fallback_comments as $fb) {
                     render_module_14_comment_item($fb['author'], $fb['content'], $fb['date'], $fb['id'], false);
 
                     if (!empty($fb['children'])) {
-                        echo '<div class="module-14-nested">';
+                        echo '<div class="module-14-nested-replies">';
                         foreach ($fb['children'] as $child) {
                             render_module_14_comment_item($child['author'], $child['content'], $child['date'], $child['id'], true);
                         }
@@ -382,62 +323,23 @@ $fallback_comments = [
             ?>
         </div>
 
-        <!-- FORM GỬI BÌNH LUẬN MỚI CHUẨN WORDPRESS -->
-        <div class="module-14-form-box" id="commentFormBox">
-            <h4 class="module-14-form-title">
-                <i class="fa-solid fa-pen-to-square"></i> 
-                <span id="replyFormTitle">Để lại bình luận của bạn</span>
-                <a href="javascript:void(0)" class="module-14-cancel-reply" id="cancelReplyBtn" onclick="cancelReply()">
-                    (Hủy trả lời)
-                </a>
-            </h4>
-
-            <form action="<?php echo esc_url(site_url('/wp-comments-post.php')); ?>" method="post" id="commentform">
-                <input type="hidden" name="comment_post_ID" value="<?php echo esc_attr($current_post_id); ?>" id="comment_post_ID">
-                <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-
-                <div class="row">
-                    <div class="col-md-6 module-14-form-group">
-                        <label for="author">Họ và tên <span class="text-danger">*</span></label>
-                        <input type="text" name="author" id="author" class="module-14-form-control" placeholder="Ví dụ: John Doe" required>
-                    </div>
-                    <div class="col-md-6 module-14-form-group">
-                        <label for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" name="email" id="email" class="module-14-form-control" placeholder="email@example.com" required>
-                    </div>
-                </div>
-
-                <div class="module-14-form-group">
-                    <label for="comment">Nội dung bình luận <span class="text-danger">*</span></label>
-                    <textarea name="comment" id="comment" rows="4" class="module-14-form-control" placeholder="Nhập nội dung bình luận..." required></textarea>
-                </div>
-
-                <div class="mt-3">
-                    <button type="submit" name="submit" id="submit" class="module-14-submit-btn">
-                        <i class="fa-solid fa-paper-plane mr-1"></i> Gửi bình luận
-                    </button>
-                </div>
+        <?php if ($module14_is_standalone) : ?>
+        <div class="module-14-quick-form">
+            <h5><i class="fa-solid fa-pen-to-square mr-1"></i> Để lại bình luận</h5>
+            <form action="<?php echo esc_url(site_url('/wp-comments-post.php')); ?>" method="post">
+                <input type="hidden" name="comment_post_ID" value="1">
+                <input type="text" name="author" class="module-14-input" placeholder="Họ và tên *" required>
+                <input type="email" name="email" class="module-14-input" placeholder="Email *" required>
+                <textarea name="comment" rows="3" class="module-14-input" placeholder="Nội dung bình luận *" required></textarea>
+                <button type="submit" class="module-14-btn-submit">Gửi bình luận</button>
             </form>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 
-<!-- SCRIPT XỬ LÝ PHẢN HỒI (REPLY) TRỰC TIẾP -->
-<script>
-function prepareReply(commentId, authorName) {
-    document.getElementById('comment_parent').value = commentId;
-    document.getElementById('replyFormTitle').innerText = 'Đang trả lời: ' + authorName;
-    document.getElementById('cancelReplyBtn').style.display = 'inline-block';
-    
-    // Cuộn mượt xuống form và focus vào ô textarea
-    var formBox = document.getElementById('commentFormBox');
-    formBox.scrollIntoView({ behavior: 'smooth' });
-    document.getElementById('comment').focus();
+<?php
+if ($module14_is_standalone && function_exists('get_footer')) {
+    get_footer();
 }
-
-function cancelReply() {
-    document.getElementById('comment_parent').value = '0';
-    document.getElementById('replyFormTitle').innerText = 'Để lại bình luận của bạn';
-    document.getElementById('cancelReplyBtn').style.display = 'none';
-}
-</script>
+?>
