@@ -191,7 +191,7 @@
 
 <div class="module-2-content-container">
     <div class="fit-posts-list">
-        <?php if (have_posts()) : ?>
+        <?php if (function_exists('have_posts') && have_posts()) : ?>
             <?php while (have_posts()) : the_post(); ?>
                 <?php
                 $post = get_post();
@@ -213,7 +213,7 @@
                     <!-- CỘT 2: TIÊU ĐỀ & TÓM TẮT BÀI VIẾT -->
                     <div class="fit-post-content">
                         <h3 class="fit-post-title">
-                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+                            <a href="<?php the_permalink(); ?>">
                                 <?php the_title(); ?>
                             </a>
                         </h3>
@@ -240,9 +240,51 @@
             </div>
 
         <?php else : ?>
-            <div class="fit-posts-empty">
-                <p>Hiện tại chưa có bài viết nào được đăng tải.</p>
-            </div>
+            <!-- DỮ LIỆU MẪU CHUẨN FIT TDC KHI CHƯA CÓ BÀI VIẾT HOẶC CHẠY STANDALONE -->
+            <article class="fit-post-card">
+                <div class="fit-date-box">
+                    <span class="fit-date-day">13</span>
+                    <span class="fit-date-month">THÁNG 08</span>
+                </div>
+                <div class="fit-post-content">
+                    <h3 class="fit-post-title">
+                        <a href="#">Sinh viên vượt khó, đạt thành tích nổi bật tại Hội thi Tin học</a>
+                    </h3>
+                    <div class="fit-post-excerpt">
+                        Khoa Công nghệ Thông tin tuyên dương các bạn sinh viên đạt giải cao trong kỳ thi Olympic Tin học sinh viên và Hội thi tay nghề trẻ vừa qua...
+                    </div>
+                </div>
+            </article>
+
+            <article class="fit-post-card">
+                <div class="fit-date-box">
+                    <span class="fit-date-day">13</span>
+                    <span class="fit-date-month">THÁNG 08</span>
+                </div>
+                <div class="fit-post-content">
+                    <h3 class="fit-post-title">
+                        <a href="#">Livestream với chủ đề: Thiết kế đồ họa - Phác họa tương lai</a>
+                    </h3>
+                    <div class="fit-post-excerpt">
+                        Buổi giao lưu trực tuyến giúp các bạn sinh viên khám phá xu hướng thiết kế sáng tạo, công nghệ AI và định hướng nghề nghiệp mỹ thuật đa phương tiện...
+                    </div>
+                </div>
+            </article>
+
+            <article class="fit-post-card">
+                <div class="fit-date-box">
+                    <span class="fit-date-day">07</span>
+                    <span class="fit-date-month">THÁNG 08</span>
+                </div>
+                <div class="fit-post-content">
+                    <h3 class="fit-post-title">
+                        <a href="#">Livestream với chủ đề: Làm chủ công nghệ cùng Gen Z</a>
+                    </h3>
+                    <div class="fit-post-excerpt">
+                        Chuyên gia công nghệ chia sẻ kinh nghiệm thích nghi với làn sóng chuyển đổi số, kỹ năng lập trình thực chiến và cơ hội việc làm tại doanh nghiệp...
+                    </div>
+                </div>
+            </article>
         <?php endif; ?>
     </div>
 </div>

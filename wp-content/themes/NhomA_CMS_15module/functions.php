@@ -76,4 +76,36 @@ function nhom_a_module_15_shortcode($atts)
 add_shortcode('module_15_last_posts', 'nhom_a_module_15_shortcode');
 add_shortcode('module_15', 'nhom_a_module_15_shortcode');
 
+/**
+ * Đăng ký các khu vực Widget (Sidebar) cho Theme
+ * - Footer #1 (footer-1): Dành cho Module 11 (Archive)
+ * - Footer #2 (footer-2): Dành cho Module 12 (Comments)
+ */
+function nhom_a_widgets_init()
+{
+    // Widget Footer #1: Module 11 (Archive)
+    register_sidebar(array(
+        'name'          => 'Footer #1',
+        'id'            => 'footer-1',
+        'description'   => 'Khu vực Widget Footer #1 - Hiển thị Module 11 (Archive / Lưu trữ bài viết)',
+        'before_widget' => '<div id="%1$s" class="widget %2$s module-11-widget-wrap mb-4">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
+    ));
+
+    // Widget Footer #2: Module 12 (Comments)
+    register_sidebar(array(
+        'name'          => 'Footer #2',
+        'id'            => 'footer-2',
+        'description'   => 'Khu vực Widget Footer #2 - Hiển thị Module 12 (Recent Comments / Bình luận mới nhất)',
+        'before_widget' => '<div id="%1$s" class="widget %2$s module-12-widget-wrap mb-4">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
+    ));
+}
+add_action('widgets_init', 'nhom_a_widgets_init');
+
+
 

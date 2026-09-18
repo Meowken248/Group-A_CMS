@@ -23,7 +23,7 @@ $module10_css_url = '';
 if (function_exists('get_template_directory_uri')) {
     $module10_css_url = get_template_directory_uri() . '/module10/style.css';
 } else {
-    $module10_css_url = 'style.css';
+    $module10_css_url = (basename(dirname($_SERVER['SCRIPT_NAME'] ?? '')) === 'module10') ? 'style.css' : 'module10/style.css';
 }
 
 // Link trang tất cả tin tức

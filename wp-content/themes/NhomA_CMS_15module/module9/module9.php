@@ -23,7 +23,7 @@ $module9_css_url = '';
 if (function_exists('get_template_directory_uri')) {
     $module9_css_url = get_template_directory_uri() . '/module9/style.css';
 } else {
-    $module9_css_url = 'style.css';
+    $module9_css_url = (basename(dirname($_SERVER['SCRIPT_NAME'] ?? '')) === 'module9') ? 'style.css' : 'module9/style.css';
 }
 ?>
 

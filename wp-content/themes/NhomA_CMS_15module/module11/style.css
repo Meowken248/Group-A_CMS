@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Module 11: Archives Widget / Component
+   Author: Bùi Nguyễn Minh Quân (Module 11 - Nhóm A CMS)
+   Mô tả: Khối hiển thị Danh sách Lưu trữ (Archives) theo tháng/năm chuẩn thiết kế:
+          - Tông thẻ Card trắng tinh tế, viền nhẹ bo góc hiện đại
+          - Tiêu đề "Archives" với biểu tượng lịch
+          - Thanh phân cách sọc trang trí đặc trưng
+          - Danh sách lưu trữ theo tháng kèm huy hiệu đếm số lượng bài viết
+   ========================================================================== */
+
+.module-11-archive-widget {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 30px auto;
+}
+
+.module-11-archive-widget *,
+.module-11-archive-widget *::before,
+.module-11-archive-widget *::after {
+    box-sizing: border-box;
+}
+
+/* Khung card trắng viền nhẹ */
+.module-11-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 20px 22px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.25s ease;
+}
+
+.module-11-card:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* Tiêu đề Archives */
+.module-11-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.module-11-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    background: #eff6ff;
+    color: #2563eb;
+    font-size: 14px;
+}
+
+.module-11-title {
+    color: #1e293b;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+/* Thanh phân cách sọc chéo trang trí */
+.module-11-divider-stripe {
+    width: 100%;
+    height: 6px;
+    margin: 10px 0 16px 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        #2563eb 0,
+        #2563eb 4px,
+        #eff6ff 4px,
+        #eff6ff 8px
+    );
+    border-radius: 3px;
+    opacity: 0.85;
+}
+
+/* Danh sách tháng lưu trữ */
+.module-11-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Từng mục tháng */
+.module-11-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 6px;
+    border-bottom: 1px dashed #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.module-11-item:last-child {
+    border-bottom: none;
+    padding-bottom: 4px;
+}
+
+.module-11-item:hover {
+    background-color: #f8fafc;
+    padding-left: 10px;
+    padding-right: 8px;
+    border-radius: 4px;
+}
+
+/* Liên kết mục tháng */
+.module-11-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #334155;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.module-11-link:hover {
+    color: #2563eb !important;
+}
+
+.module-11-arrow {
+    color: #94a3b8;
+    font-size: 11px;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.module-11-item:hover .module-11-arrow {
+    color: #2563eb;
+    transform: translateX(2px);
+}
+
+/* Badge số lượng bài viết (Post count pill) */
+.module-11-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    background-color: #f1f5f9;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.module-11-item:hover .module-11-badge {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+/* Style cho widget chuẩn của WordPress khi xuất qua dynamic_sidebar */
+.module-11-widget-wrap ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.module-11-widget-wrap ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: 14px;
+}
+
+.module-11-widget-wrap ul li a {
+    color: #334155;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.module-11-widget-wrap ul li a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}

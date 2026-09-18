@@ -5,6 +5,10 @@
 /**
  * The template for displaying the footer
  * Nạp Module 3: Footer (Bootsnipp rlXdE)
+ *
+ * Ghi chú kỹ thuật:
+ * Theo yêu cầu đề bài, Widget Footer #1 (Module 11 - Archive) và Footer #2 (Module 12 - Comments)
+ * đã được chuyển ra bố cục 3 cột ở trang chủ (index.php) kẹp 2 bên Content (2).
  */
 $module3_path = get_template_directory() . '/Moudle3/test.php';
 if (file_exists($module3_path)) {
