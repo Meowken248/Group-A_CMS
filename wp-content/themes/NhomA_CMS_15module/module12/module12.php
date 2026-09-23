@@ -44,6 +44,10 @@ if (function_exists('get_comments')) {
             $post_title = get_the_title($c->comment_post_ID);
             $comment_link = get_comment_link($c);
             $clean_text = wp_strip_all_tags($c->comment_content);
+            // Loại bỏ hoàn toàn các văn bản vô nghĩa Lorem Ipsum nếu có trong CSDL
+            if (stripos($clean_text, 'Lorem Ipsum') !== false) {
+                continue;
+            }
             if (mb_strlen($clean_text, 'UTF-8') > 60) {
                 $clean_text = mb_substr($clean_text, 0, 57, 'UTF-8') . '...';
             }
