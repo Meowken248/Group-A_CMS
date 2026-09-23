@@ -1,181 +1,202 @@
 /* ==========================================================================
-   Module 11: Archives Widget / Component
-   Author: Bùi Nguyễn Minh Quân (Module 11 - Nhóm A CMS)
-   Mô tả: Khối hiển thị Danh sách Lưu trữ (Archives) theo tháng/năm chuẩn thiết kế:
-          - Tông thẻ Card trắng tinh tế, viền nhẹ bo góc hiện đại
-          - Tiêu đề "Archives" với biểu tượng lịch
-          - Thanh phân cách sọc trang trí đặc trưng
-          - Danh sách lưu trữ theo tháng kèm huy hiệu đếm số lượng bài viết
+   Module 11: Archives / Bài viết mới nhất (VnExpress "Xem nhiều" Style)
+   Author: Bùi Nguyễn Minh Quân (Nhóm A CMS - Module 11)
+   Mô tả: Phong cách danh sách tin tức số thứ tự lớn đặc trưng của VnExpress:
+          - Chữ số 1 - 8 Serif cỡ lớn, đậm nét
+          - Tiêu đề tin tức sang trọng, liên kết chuyển màu đỏ VnExpress (#9f224e)
+          - Hiển thị số lượt bình luận kèm biểu tượng tin nhắn
+          - Bố cục lưới linh hoạt 2 cột hoặc 1 cột khi nằm trong Sidebar
    ========================================================================== */
 
-.module-11-archive-widget {
+.module-11-container {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     box-sizing: border-box;
     width: 100%;
-    max-width: 380px;
-    margin: 0 auto 30px auto;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    margin-bottom: 24px;
 }
 
-.module-11-archive-widget *,
-.module-11-archive-widget *::before,
-.module-11-archive-widget *::after {
+.module-11-container *,
+.module-11-container *::before,
+.module-11-container *::after {
     box-sizing: border-box;
 }
 
-/* Khung card trắng viền nhẹ */
-.module-11-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    padding: 20px 22px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    transition: box-shadow 0.25s ease;
-}
-
-.module-11-card:hover {
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-}
-
-/* Tiêu đề Archives */
-.module-11-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-
-.module-11-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    background: #eff6ff;
-    color: #2563eb;
-    font-size: 14px;
-}
-
-.module-11-title {
-    color: #1e293b;
-    font-size: 17px;
-    font-weight: 700;
-    margin: 0;
-    letter-spacing: -0.2px;
-}
-
-/* Thanh phân cách sọc chéo trang trí */
-.module-11-divider-stripe {
-    width: 100%;
-    height: 6px;
-    margin: 10px 0 16px 0;
-    background: repeating-linear-gradient(
-        -45deg,
-        #2563eb 0,
-        #2563eb 4px,
-        #eff6ff 4px,
-        #eff6ff 8px
-    );
-    border-radius: 3px;
-    opacity: 0.85;
-}
-
-/* Danh sách tháng lưu trữ */
-.module-11-list {
-    list-style: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Từng mục tháng */
-.module-11-item {
+/* Thanh tiêu đề Module 11 */
+.module-11-header-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 6px;
-    border-bottom: 1px dashed #e2e8f0;
+    border-bottom: 2px solid #b52828;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.module-11-main-title {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #222222;
+    text-transform: capitalize;
+    letter-spacing: -0.2px;
+}
+
+.module-11-title-text {
+    position: relative;
+}
+
+/* Nút bấm chuyển Tab (Bài viết mới / Archives ngày tháng) */
+.module-11-tabs {
+    display: flex;
+    gap: 6px;
+}
+
+.module-11-tab-btn {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    cursor: pointer;
     transition: all 0.2s ease;
+}
+
+.module-11-tab-btn:hover {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+
+.module-11-tab-btn.active {
+    background: #b52828;
+    border-color: #b52828;
+    color: #ffffff;
+}
+
+/* Ẩn / hiện nội dung tab */
+.module-11-tab-content {
+    display: none;
+}
+
+.module-11-tab-content.active {
+    display: block;
+    animation: module11FadeIn 0.25s ease-in-out;
+}
+
+@keyframes module11FadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Khung lưới hiển thị danh sách mục */
+.module-11-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+/* Khi khung chứa rộng từ 520px trở lên: chia 2 cột như ảnh chụp VnExpress */
+@media (min-width: 520px) {
+    .module-11-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 28px;
+        row-gap: 14px;
+    }
+}
+
+/* Từng mục bài viết */
+.module-11-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.15s ease;
 }
 
 .module-11-item:last-child {
     border-bottom: none;
-    padding-bottom: 4px;
 }
 
-.module-11-item:hover {
-    background-color: #f8fafc;
-    padding-left: 10px;
-    padding-right: 8px;
-    border-radius: 4px;
+/* Số thứ tự lớn phong cách VnExpress (Big Number Serif) */
+.module-11-number {
+    font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: #222222;
+    min-width: 22px;
+    text-align: center;
+    flex-shrink: 0;
+    user-select: none;
 }
 
-/* Liên kết mục tháng */
-.module-11-link {
+/* Nội dung tiêu đề và metadata */
+.module-11-info {
+    flex: 1;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
-    color: #334155;
+    gap: 6px;
+}
+
+/* Tiêu đề bài viết */
+.module-11-post-title {
+    color: #222222;
     text-decoration: none !important;
     font-size: 14px;
     font-weight: 500;
-    transition: color 0.2s ease;
+    line-height: 1.45;
+    transition: color 0.15s ease;
+    display: inline;
 }
 
-.module-11-link:hover {
-    color: #2563eb !important;
+.module-11-post-title:hover {
+    color: #9f224e !important; /* Màu đỏ thương hiệu VnExpress */
 }
 
-.module-11-arrow {
-    color: #94a3b8;
-    font-size: 11px;
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.module-11-item:hover .module-11-arrow {
-    color: #2563eb;
-    transform: translateX(2px);
-}
-
-/* Badge số lượng bài viết (Post count pill) */
-.module-11-badge {
-    display: inline-block;
-    padding: 2px 9px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #475569;
-    background-color: #f1f5f9;
-    border-radius: 12px;
-    transition: all 0.2s ease;
-}
-
-.module-11-item:hover .module-11-badge {
-    background-color: #dbeafe;
-    color: #1d4ed8;
-}
-
-/* Style cho widget chuẩn của WordPress khi xuất qua dynamic_sidebar */
-.module-11-widget-wrap ul {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-.module-11-widget-wrap ul li {
-    display: flex;
-    justify-content: space-between;
+/* Số lượt bình luận */
+.module-11-comment-count {
+    display: inline-flex;
     align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px dashed #e2e8f0;
-    font-size: 14px;
+    gap: 4px;
+    font-size: 12px;
+    color: #757575;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
-.module-11-widget-wrap ul li a {
-    color: #334155;
-    text-decoration: none;
-    font-weight: 500;
+.module-11-icon-bubble {
+    color: #94a3b8;
+    flex-shrink: 0;
 }
 
-.module-11-widget-wrap ul li a:hover {
-    color: #2563eb;
-    text-decoration: underline;
+.module-11-badge-count {
+    background-color: #f1f5f9;
+    color: #475569;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Tương thích với Widget Footer của theme */
+.module-11-widget-wrap .module-11-container {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
 }

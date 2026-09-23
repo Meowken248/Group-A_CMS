@@ -1,37 +1,50 @@
-# Module 11: Archive (Lưu Trữ Bài Viết)
+# Module 11: Archives / Bài viết mới nhất (Phong cách VnExpress "Xem nhiều")
 
-- **Người thực hiện:** Bùi Nguyễn Minh Quân
-- **Phân công:** Module 11 - Archive (nhóm 6 sinh viên)
-- **Dự án:** CMS Nhóm A (WordPress 15 Modules) - FIT TDC
-
----
-
-## 1. Giới Thiệu
-Module 11 chịu trách nhiệm hiển thị khối Lưu trữ bài viết (Archive) theo tháng/năm:
-- Thiết kế dạng thẻ Card hiện đại, tông màu sáng tinh tế.
-- Tiêu đề **"Archives"** kèm icon lịch và thanh phân cách sọc trang trí.
-- Danh sách liên kết đến các tháng có bài viết kèm badge đếm số lượng bài viết.
-- Tự động lấy dữ liệu từ WordPress (`wp_get_archives()`) hoặc hiển thị danh sách mẫu khi chưa có bài viết.
-- Tích hợp chuẩn vào Widget Area **Footer #1** (`footer-1`) hoặc nhúng trực tiếp vào Sidebar Trái của Trang chủ (layout 3 cột).
+**Sinh viên thực hiện:** Bùi Nguyễn Minh Quân  
+**Học phần:** Hệ quản trị nội dung (CMS) - Nhóm A  
+**Vị trí hiển thị:** Cột Sidebar trái (`col-lg-3`) trên Trang chủ (`index.php`), Widget `Footer #1` hoặc hiển thị độc lập.
 
 ---
 
-## 2. Cấu Trúc Thư Mục Module 11
-```text
+## 1. Giới thiệu Module
+Module 11 được thiết kế lại hoàn toàn dựa trên khối **"Xem nhiều"** của báo điện tử **VnExpress** kết hợp chức năng **Archives / Bài viết mới nhất** theo đúng yêu cầu đề bài của Giảng viên:
+- Số thứ tự lớn (`1` đến `8`) định dạng font Serif cổ điển (`Merriweather` / `Georgia`) đậm nét.
+- Tiêu đề tin bài chuẩn phong cách báo chí, liên kết đổi màu đỏ VnExpress `#9f224e` khi hover.
+- Hiển thị số lượt bình luận bài viết kèm biểu tượng trao đổi 💬.
+- Hỗ trợ linh hoạt 2 chế độ dữ liệu qua nút chuyển tab:
+  1. **Bài viết mới nhất**: Tự động truy vấn 8 bài viết mới nhất từ CSDL WordPress (`get_posts`), dự phòng bằng danh sách bài viết mẫu từ ảnh yêu cầu.
+  2. **Archives ngày tháng**: Hiển thị danh sách lưu trữ bài viết theo từng tháng (`wp_get_archives`).
+- Thiết kế responsive thích ứng thông minh: tự động hiển thị 2 cột trên màn hình rộng hoặc trang demo độc lập, và co về 1 cột gọn gàng khi đặt vào Sidebar hẹp của theme.
+
+---
+
+## 2. Cấu trúc thư mục
+```
 module11/
-├── module11.php   # Component chính, tự động nạp CSS và render khối Archive
-├── style.css      # File CSS riêng biệt cho Module 11
-├── index.php      # File chạy xem trước trực quan (standalone preview)
-└── README.md      # Tài liệu hướng dẫn tích hợp
+├── module11.php     # Mã nguồn chính của Module 11
+├── style.css        # CSS phong cách VnExpress, Big Number Serif và Responsive
+├── index.php        # File chạy thử nghiệm độc lập (Standalone Runner)
+└── README.md        # Tài liệu hướng dẫn sử dụng và kiểm thử
 ```
 
 ---
 
-## 3. Hướng Dẫn Tích Hợp Cho Nhóm
-Nhúng vào Trang chủ (Cột 1 bên trái) hoặc bất kỳ file nào:
-```php
-<?php include get_template_directory() . '/module11/module11.php'; ?>
+## 3. Cách sử dụng
+
+### 3.1. Chạy thử nghiệm độc lập
+Truy cập qua trình duyệt web:
 ```
-Hoặc qua Widget trong WordPress Admin:
-- Vào **Giao diện -> Widget**
-- Thêm widget **Archives (Lưu trữ)** vào khu vực **Footer #1**.
+http://localhost/Group-A_CMS/wp-content/themes/NhomA_CMS_15module/module11/index.php
+```
+
+### 3.2. Nhúng vào Theme hoặc Trang bất kỳ
+Sử dụng Shortcode:
+```php
+[module_11]
+// hoặc
+[module_11_archive]
+```
+Hoặc gọi trực tiếp trong code PHP:
+```php
+include get_template_directory() . '/module11/module11.php';
+```

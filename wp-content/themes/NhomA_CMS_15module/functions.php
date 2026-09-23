@@ -77,6 +77,39 @@ add_shortcode('module_15_last_posts', 'nhom_a_module_15_shortcode');
 add_shortcode('module_15', 'nhom_a_module_15_shortcode');
 
 /**
+ * Đăng ký Shortcode [module_11_archive] và [module_11]
+ * Cho phép chèn giao diện Module 11 (VnExpress "Xem nhiều" / Archives)
+ */
+function nhom_a_module_11_shortcode($atts)
+{
+    ob_start();
+    $module11_file = get_template_directory() . '/module11/module11.php';
+    if (file_exists($module11_file)) {
+        include $module11_file;
+    }
+    return ob_get_clean();
+}
+add_shortcode('module_11_archive', 'nhom_a_module_11_shortcode');
+add_shortcode('module_11', 'nhom_a_module_11_shortcode');
+
+/**
+ * Đăng ký Shortcode [module_12_comments] và [module_12]
+ * Cho phép chèn giao diện Module 12 (Comments phong cách el.tdc.edu.vn)
+ */
+function nhom_a_module_12_shortcode($atts)
+{
+    ob_start();
+    $module12_file = get_template_directory() . '/module12/module12.php';
+    if (file_exists($module12_file)) {
+        include $module12_file;
+    }
+    return ob_get_clean();
+}
+add_shortcode('module_12_comments', 'nhom_a_module_12_shortcode');
+add_shortcode('module_12', 'nhom_a_module_12_shortcode');
+
+
+/**
  * Đăng ký các khu vực Widget (Sidebar) cho Theme
  * - Footer #1 (footer-1): Dành cho Module 11 (Archive)
  * - Footer #2 (footer-2): Dành cho Module 12 (Comments)
