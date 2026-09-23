@@ -1,41 +1,48 @@
-# Module 12: Comments (Bình Luận Mới Nhất)
+# Module 12: Comments Component (Phong cách el.tdc.edu.vn)
 
-- **Người thực hiện:** Bùi Nguyễn Minh Quân
-- **Phân công:** Module 12 - Comments (nhóm 6 sinh viên)
-- **Dự án:** CMS Nhóm A (WordPress 15 Modules) - FIT TDC
-
----
-
-## 1. Giới Thiệu
-Module 12 chịu trách nhiệm hiển thị khối Bình luận mới nhất (Recent Comments):
-- Thiết kế dạng thẻ Card hiện đại, tông màu sáng tinh tế.
-- Tiêu đề **"Comments"** kèm icon bình luận và thanh phân cách sọc trang trí tông hồng tím.
-- Hiển thị thông tin từng bình luận:
-  - Avatar tác giả bình luận (hoặc chữ cái đầu).
-  - Tên tác giả và thời gian bình luận.
-  - Đoạn trích dẫn nội dung bình luận ngắn gọn, xúc tích.
-  - Tiêu đề bài viết được bình luận dẫn link trực tiếp tới bài viết đó.
-- Tự động lấy dữ liệu từ WordPress (`get_comments()`) hoặc hiển thị danh sách mẫu khi chưa có bình luận.
-- Tích hợp chuẩn vào Widget Area **Footer #2** (`footer-2`) hoặc nhúng trực tiếp vào Sidebar Phải của Trang chủ (layout 3 cột).
+**Sinh viên thực hiện:** Bùi Nguyễn Minh Quân  
+**Học phần:** Hệ quản trị nội dung (CMS) - Nhóm A  
+**Vị trí hiển thị:** Cột Sidebar phải (`col-lg-3`) trên Trang chủ (`index.php`), Widget `Footer #2` hoặc hiển thị độc lập.
 
 ---
 
-## 2. Cấu Trúc Thư Mục Module 12
-```text
+## 1. Giới thiệu Module
+Module 12 được hiện thực theo khối **Comments** của hệ thống đào tạo điện tử **el.tdc.edu.vn**:
+- Tiêu đề **Comments** trang nhã với đường kẻ phân cách đặc trưng phía dưới.
+- Danh sách bình luận dạng tối giản, liên kết màu xanh học thuật `#0066cc`, đổi màu và gạch chân khi hover.
+- Ngăn cách rõ ràng giữa từng dòng bình luận bằng đường viền phẳng nhẹ nhàng.
+- Tự động lấy các bình luận được duyệt mới nhất từ WordPress (`get_comments`), liên kết trực tiếp tới vị trí bình luận trên bài viết.
+- Có sẵn bộ dữ liệu mẫu khớp 100% với ảnh đề bài: *"Bài viết hay quá"*, *"Cảm ơn tác giả"*, *"Bài viết thật hữu ích"*.
+
+---
+
+## 2. Cấu trúc thư mục
+```
 module12/
-├── module12.php   # Component chính, tự động nạp CSS và render khối Comments
-├── style.css      # File CSS riêng biệt cho Module 12
-├── index.php      # File chạy xem trước trực quan (standalone preview)
-└── README.md      # Tài liệu hướng dẫn tích hợp
+├── module12.php     # Mã nguồn chính của Module 12
+├── style.css        # CSS phong cách el.tdc.edu.vn tối giản và tinh tế
+├── index.php        # File chạy thử nghiệm độc lập (Standalone Runner)
+└── README.md        # Tài liệu hướng dẫn sử dụng và kiểm thử
 ```
 
 ---
 
-## 3. Hướng Dẫn Tích Hợp Cho Nhóm
-Nhúng vào Trang chủ (Cột 3 bên phải) hoặc bất kỳ file nào:
-```php
-<?php include get_template_directory() . '/module12/module12.php'; ?>
+## 3. Cách sử dụng
+
+### 3.1. Chạy thử nghiệm độc lập
+Truy cập qua trình duyệt web:
 ```
-Hoặc qua Widget trong WordPress Admin:
-- Vào **Giao diện -> Widget**
-- Thêm widget **Recent Comments (Bình luận gần đây)** vào khu vực **Footer #2**.
+http://localhost/Group-A_CMS/wp-content/themes/NhomA_CMS_15module/module12/index.php
+```
+
+### 3.2. Nhúng vào Theme hoặc Trang bất kỳ
+Sử dụng Shortcode:
+```php
+[module_12]
+// hoặc
+[module_12_comments]
+```
+Hoặc gọi trực tiếp trong code PHP:
+```php
+include get_template_directory() . '/module12/module12.php';
+```
