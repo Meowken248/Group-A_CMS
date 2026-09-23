@@ -77,6 +77,22 @@ add_shortcode('module_15_last_posts', 'nhom_a_module_15_shortcode');
 add_shortcode('module_15', 'nhom_a_module_15_shortcode');
 
 /**
+ * Đăng ký Shortcode [module_16_quick_links] và [module_16]
+ * Cho phép chèn giao diện Module 16 (Liên kết nhanh & Bản tin) vào bất kỳ đâu
+ */
+function nhom_a_module_16_shortcode($atts)
+{
+    ob_start();
+    $module16_file = get_template_directory() . '/16/test.php';
+    if (file_exists($module16_file)) {
+        include $module16_file;
+    }
+    return ob_get_clean();
+}
+add_shortcode('module_16_quick_links', 'nhom_a_module_16_shortcode');
+add_shortcode('module_16', 'nhom_a_module_16_shortcode');
+
+/**
  * ==========================================================
  * MỞ RỘNG GIỚI HẠN NHẬP ĐƯỜNG LINK DÀI & SLUG (URL VALIDATION)
  * ==========================================================
