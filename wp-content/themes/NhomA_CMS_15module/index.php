@@ -88,5 +88,19 @@ get_header();
     </div>
 </div>
 
+<!-- 4. KHỐI TIỆN ÍCH DƯỚI CÙNG: MODULE 16 (LIÊN KẾT NHANH & BẢN TIN) -->
+<div class="row">
+    <div class="col-12 mb-4">
+        <section class="section-module-16">
+            <?php
+            $module16_path = get_template_directory() . '/16/test.php';
+            if (file_exists($module16_path)) {
+                include $module16_path;
+            }
+            ?>
+        </section>
+    </div>
+</div>
+
 <?php
 get_footer();
