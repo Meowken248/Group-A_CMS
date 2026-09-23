@@ -5,7 +5,7 @@
           - Chữ số 1 - 8 Serif cỡ lớn, đậm nét
           - Tiêu đề tin tức sang trọng, liên kết chuyển màu đỏ VnExpress (#9f224e)
           - Hiển thị số lượt bình luận kèm biểu tượng tin nhắn
-          - Bố cục lưới linh hoạt 2 cột hoặc 1 cột khi nằm trong Sidebar
+          - Bố cục thích ứng thông minh: 1 cột khi nằm trong Sidebar hẹp, 2 cột khi ở khung rộng
    ========================================================================== */
 
 .module-11-container {
@@ -15,9 +15,11 @@
     background: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    padding: 18px 20px;
+    padding: 16px 18px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
     margin-bottom: 24px;
+    container-type: inline-size; /* Hỗ trợ CSS Container Queries */
+    overflow: hidden;
 }
 
 .module-11-container *,
@@ -31,20 +33,23 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: nowrap;
     border-bottom: 2px solid #b52828;
     padding-bottom: 8px;
-    margin-bottom: 16px;
-    position: relative;
+    margin-bottom: 14px;
+    gap: 8px;
 }
 
 .module-11-main-title {
     margin: 0;
     padding: 0;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     color: #222222;
     text-transform: capitalize;
     letter-spacing: -0.2px;
+    white-space: nowrap; /* Không bao giờ bị rớt dòng thành "Xem \n Nhiều" */
+    flex-shrink: 0;
 }
 
 .module-11-title-text {
@@ -54,7 +59,8 @@
 /* Nút bấm chuyển Tab (Bài viết mới / Archives ngày tháng) */
 .module-11-tabs {
     display: flex;
-    gap: 6px;
+    gap: 4px;
+    flex-shrink: 0;
 }
 
 .module-11-tab-btn {
@@ -63,9 +69,10 @@
     color: #64748b;
     font-size: 11px;
     font-weight: 600;
-    padding: 3px 8px;
+    padding: 3px 7px;
     border-radius: 4px;
     cursor: pointer;
+    white-space: nowrap;
     transition: all 0.2s ease;
 }
 
@@ -87,13 +94,13 @@
 
 .module-11-tab-content.active {
     display: block;
-    animation: module11FadeIn 0.25s ease-in-out;
+    animation: module11FadeIn 0.2s ease-in-out;
 }
 
 @keyframes module11FadeIn {
     from {
         opacity: 0;
-        transform: translateY(3px);
+        transform: translateY(2px);
     }
     to {
         opacity: 1;
@@ -101,19 +108,20 @@
     }
 }
 
-/* Khung lưới hiển thị danh sách mục */
+/* Khung lưới hiển thị danh sách mục - Mặc định 1 CỘT cho Sidebar hẹp */
 .module-11-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
+    width: 100%;
 }
 
-/* Khi khung chứa rộng từ 520px trở lên: chia 2 cột như ảnh chụp VnExpress */
-@media (min-width: 520px) {
+/* Chỉ chia 2 CỘT khi chiều rộng của chính thẻ CONTAINER >= 480px (Container Query) hoặc thuộc trang demo rộng */
+@container (min-width: 480px) {
     .module-11-grid {
         grid-template-columns: repeat(2, 1fr);
-        column-gap: 28px;
-        row-gap: 14px;
+        column-gap: 20px;
+        row-gap: 12px;
     }
 }
 
@@ -121,47 +129,53 @@
 .module-11-item {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-    padding-bottom: 12px;
+    gap: 10px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #f1f5f9;
-    transition: background-color 0.15s ease;
+    min-width: 0; /* Ngăn flex item bị tràn chiều rộng */
+    width: 100%;
 }
 
 .module-11-item:last-child {
     border-bottom: none;
+    padding-bottom: 2px;
 }
 
 /* Số thứ tự lớn phong cách VnExpress (Big Number Serif) */
 .module-11-number {
     font-family: "Merriweather", Georgia, "Times New Roman", Times, serif;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.1;
     color: #222222;
-    min-width: 22px;
+    min-width: 18px;
     text-align: center;
     flex-shrink: 0;
     user-select: none;
+    padding-top: 1px;
 }
 
 /* Nội dung tiêu đề và metadata */
 .module-11-info {
     flex: 1;
+    min-width: 0; /* Cho phép co giãn văn bản không bị tràn */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 6px;
+    gap: 4px 8px;
 }
 
 /* Tiêu đề bài viết */
 .module-11-post-title {
     color: #222222;
     text-decoration: none !important;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 500;
-    line-height: 1.45;
+    line-height: 1.4;
     transition: color 0.15s ease;
     display: inline;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .module-11-post-title:hover {
@@ -172,8 +186,8 @@
 .module-11-comment-count {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 12px;
+    gap: 3px;
+    font-size: 11.5px;
     color: #757575;
     white-space: nowrap;
     vertical-align: middle;
@@ -187,9 +201,9 @@
 .module-11-badge-count {
     background-color: #f1f5f9;
     color: #475569;
-    padding: 1px 6px;
-    border-radius: 10px;
-    font-size: 11px;
+    padding: 1px 5px;
+    border-radius: 8px;
+    font-size: 10.5px;
     font-weight: 600;
 }
 
