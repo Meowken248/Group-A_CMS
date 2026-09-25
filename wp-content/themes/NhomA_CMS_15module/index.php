@@ -74,7 +74,7 @@ if (file_exists($module13_path)) {
     } else {
         $wt4_path = get_template_directory() . '/widget_test_4/widget_test_4.php';
         if (file_exists($wt4_path)) {
-            include $wt4_path;
+            include_once $wt4_path;
             if (function_exists('nhom_a_render_widget_test_4')) {
                 nhom_a_render_widget_test_4();
             }

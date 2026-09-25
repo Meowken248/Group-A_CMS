@@ -14,6 +14,7 @@ if (have_posts()) {
     // Nếu không tìm thấy bài viết: Hiển thị Module 4 (Giao diện Bootsnipp 35V6b chuẩn Hình 2)
     include get_template_directory() . '/Moudle4/test.php';
 }
+?>
 
 <!-- WIDGET TEST 4: Phía trên Footer (Trang danh sách) -->
 <div class="wt4-above-footer-area">
@@ -23,7 +24,7 @@ if (have_posts()) {
     } else {
         $wt4_path = get_template_directory() . '/widget_test_4/widget_test_4.php';
         if (file_exists($wt4_path)) {
-            include $wt4_path;
+            include_once $wt4_path;
             if (function_exists('nhom_a_render_widget_test_4')) {
                 nhom_a_render_widget_test_4();
             }
