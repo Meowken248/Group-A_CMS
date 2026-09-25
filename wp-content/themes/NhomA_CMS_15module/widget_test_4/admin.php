@@ -25,6 +25,15 @@ require_once ABSPATH . 'wp-admin/includes/media.php';
 $message = '';
 $message_type = ''; // success | error | warning
 
+// --- BẬT / TẮT HIỂN THỊ WIDGET TRÊN WEBSITE ---
+if (isset($_POST['action']) && $_POST['action'] === 'toggle_visibility') {
+    $current_visible = get_option('wt4_widget_visible', '1');
+    $new_visible = ($current_visible === '0') ? '1' : '0';
+    update_option('wt4_widget_visible', $new_visible);
+    $message = ($new_visible === '1') ? 'Đã BẬT hiển thị Widget Test 4 trên website!' : 'Đã TẠM ẨN Widget Test 4 trên website!';
+    $message_type = ($new_visible === '1') ? 'success' : 'warning';
+}
+
 // --- THÊM BÀI VIẾT ---
 if (isset($_POST['action']) && $_POST['action'] === 'add_post') {
     $title   = sanitize_text_field($_POST['post_title'] ?? '');
@@ -545,6 +554,37 @@ $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https"
             <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
     <?php endif; ?>
+
+    <!-- TRẠNG THÁI HIỂN THỊ WIDGET -->
+    <?php $is_visible = (get_option('wt4_widget_visible', '1') !== '0'); ?>
+    <div class="admin-card mb-4" style="border-left: 5px solid <?php echo $is_visible ? '#22c55e' : '#f59e0b'; ?>;">
+        <div class="admin-card-body d-flex align-items-center justify-content-between flex-wrap" style="gap: 15px;">
+            <div>
+                <h5 class="mb-1 font-weight-bold d-flex align-items-center" style="gap: 10px;">
+                    Trạng thái Widget trên Website:
+                    <?php if ($is_visible) : ?>
+                        <span class="badge badge-success px-3 py-2" style="font-size: 13px;"><i class="fas fa-eye mr-1"></i> ĐANG HIỂN THỊ</span>
+                    <?php else : ?>
+                        <span class="badge badge-warning text-dark px-3 py-2" style="font-size: 13px;"><i class="fas fa-eye-slash mr-1"></i> ĐANG TẠM ẨN</span>
+                    <?php endif; ?>
+                </h5>
+                <small class="text-muted">
+                    <?php if ($is_visible) : ?>
+                        Widget đang hiển thị tại vị trí phía trên Footer (Trang chủ, Trang danh sách, Trang chi tiết).
+                    <?php else : ?>
+                        Widget hiện đang <strong>TẠM ẨN</strong> khỏi cả 3 trang. Dữ liệu và cấu hình vẫn được giữ nguyên đầy đủ.
+                    <?php endif; ?>
+                </small>
+            </div>
+            <form method="POST" action="<?php echo esc_url($current_url); ?>" class="m-0">
+                <input type="hidden" name="action" value="toggle_visibility">
+                <button type="submit" class="btn <?php echo $is_visible ? 'btn-outline-danger' : 'btn-success-custom'; ?> font-weight-bold">
+                    <i class="fas fa-<?php echo $is_visible ? 'eye-slash' : 'eye'; ?> mr-1"></i>
+                    <?php echo $is_visible ? 'Tạm ẩn Widget ngay' : 'Bật hiển thị Widget'; ?>
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- THỐNG KÊ -->
     <div class="stats-row">

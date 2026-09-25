@@ -67,6 +67,11 @@ if (class_exists('WP_Widget')) {
 // ======================================================
 function nhom_a_render_widget_test_4()
 {
+    // Kiểm tra trạng thái ẩn/hiện (cho phép tạm ẩn theo yêu cầu)
+    if (function_exists('get_option') && get_option('wt4_widget_visible', '1') === '0') {
+        return;
+    }
+
     // Lấy CSS URL
     $wt4_css_url = '';
     if (function_exists('get_template_directory_uri')) {
