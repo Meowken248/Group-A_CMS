@@ -1,0 +1,175 @@
+﻿/* ========================================================
+   CSS CHO MODULE WIDGET_TEST_4 (BẤT ĐỘNG SẢN RANDOM)
+   Tác giả: Nguyễn Thành Đạt
+   
+   ======================================================== */
+
+.above-footer-widget-area {
+    width: 100%;
+    background-color: #ffffff;
+    border-top: 2px solid #e2e8f0;
+    border-bottom: 1px solid #cbd5e1;
+    padding: 35px 0 45px 0;
+    margin-top: 30px;
+    clear: both;
+}
+
+.widget_test_4_wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* Lưới 3 cột */
+.widget_test_4_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* Thẻ Card Bất Động Sản */
+.bds_card_item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.bds_card_item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Khung ảnh đại diện */
+.bds_card_thumb {
+    position: relative;
+    width: 100%;
+    height: 210px;
+    background-color: #f1f5f9;
+    overflow: hidden;
+}
+
+.bds_card_thumb a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.bds_card_thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.bds_card_item:hover .bds_card_thumb img {
+    transform: scale(1.04);
+}
+
+/* Nhãn màu xanh lá góc trên bên trái: "Đang mở bán" */
+.bds_badge_status {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #20b26c;
+    /* Màu xanh lá chuẩn theo hình mẫu */
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.2px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Phần nội dung dưới hình ảnh */
+.bds_card_body {
+    padding: 20px 18px 22px 18px;
+    background: #fbfbfc;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tiêu đề dự án */
+.bds_card_title {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: #374151;
+    line-height: 1.35;
+    margin: 0 0 12px 0;
+    min-height: 52px;
+}
+
+.bds_card_title a {
+    color: #374151;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.bds_card_title a:hover {
+    color: #20b26c;
+}
+
+/* Chủ đầu tư */
+.bds_card_investor {
+    font-size: 14.5px;
+    color: #4b5563;
+    margin-bottom: 12px;
+    line-height: 1.45;
+}
+
+.bds_card_investor span {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+/* Dòng meta thông tin (Thời hạn sở hữu & Địa chỉ) */
+.bds_card_meta_row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 9px;
+    line-height: 1.45;
+}
+
+.bds_card_meta_row:last-child {
+    margin-bottom: 0;
+}
+
+.bds_meta_icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: #6b7280;
+}
+
+/* Responsive khi xem trên màn hình nhỏ */
+@media (max-width: 992px) {
+    .widget_test_4_grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .widget_test_4_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bds_card_title {
+        min-height: auto;
+    }
+}
