@@ -88,12 +88,15 @@ function nhom_a_render_widget_test_4()
             'exclude'    => array(1), // Loại bỏ Uncategorized (ID=1)
         ));
 
-        // Chọn ngẫu nhiên 1 chuyên mục nếu có
+        // Cố định chuyên mục theo ngày (tất cả 3 trang hiển thị giống nhau trong cùng 1 ngày)
         $selected_cat_id = 0;
         if (!empty($categories)) {
-            $random_cat = $categories[array_rand($categories)];
-            $selected_cat_id = $random_cat->term_id;
-            $widget_title = $random_cat->name;
+            $day_seed = intval(date('Ymd')); // Seed theo ngày: 20260925
+            $cat_index = $day_seed % count($categories);
+            $cat_keys = array_keys($categories);
+            $selected_cat = $categories[$cat_keys[$cat_index]];
+            $selected_cat_id = $selected_cat->term_id;
+            $widget_title = $selected_cat->name;
         }
 
         // Query 3 bài viết mới nhất từ chuyên mục đã chọn
@@ -113,7 +116,11 @@ function nhom_a_render_widget_test_4()
             foreach ($wp_posts as $index => $post) {
                 $thumb_url = '';
                 if ($index === 0 && has_post_thumbnail($post->ID)) {
-                    $thumb_url = get_the_post_thumbnail_url($post->ID, 'news-thumb');
+                    // Thử lấy ảnh theo các size, ưu tiên medium > news-thumb > full
+                    $thumb_url = get_the_post_thumbnail_url($post->ID, 'medium');
+                    if (empty($thumb_url)) {
+                        $thumb_url = get_the_post_thumbnail_url($post->ID, 'full');
+                    }
                 }
                 $posts_data[] = array(
                     'title' => get_the_title($post->ID),
