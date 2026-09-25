@@ -1,0 +1,169 @@
+/**
+ * Widget Test 4 - Stylesheet
+ * Thành viên thực hiện: Bùi Nguyễn Minh Quân
+ * Lớp / Nhóm: Nhóm A CMS
+ *
+ * Thiết kế theo hình mẫu:
+ *   - Card trắng, viền nhẹ, bo góc
+ *   - Tiêu đề chuyên mục có thanh đỏ dọc bên trái
+ *   - Bài viết đầu tiên có ảnh thumbnail
+ *   - Bài viết 2, 3 chỉ tiêu đề, ngăn cách bởi đường kẻ ngang
+ */
+
+/* ======================== */
+/* CONTAINER TỔNG           */
+/* ======================== */
+.wt4-widget-container {
+    max-width: 320px;
+    margin: 20px auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ======================== */
+/* CARD CHÍNH               */
+/* ======================== */
+.wt4-card {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 18px 16px 14px 16px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* ======================== */
+/* TIÊU ĐỀ CHUYÊN MỤC      */
+/* ======================== */
+.wt4-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+    padding: 0;
+    line-height: 1.3;
+}
+
+/* Thanh đỏ dọc bên trái tiêu đề */
+.wt4-title-bar {
+    display: inline-block;
+    width: 4px;
+    height: 22px;
+    background-color: #e53935;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+/* ======================== */
+/* DANH SÁCH BÀI VIẾT       */
+/* ======================== */
+.wt4-posts-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mỗi bài viết */
+.wt4-post-item {
+    padding: 0;
+}
+
+/* Bài viết có ảnh (featured) */
+.wt4-post-featured {
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eeeeee;
+    margin-bottom: 0;
+}
+
+/* Bài viết chỉ text */
+.wt4-post-text {
+    padding: 12px 0;
+    border-bottom: 1px solid #eeeeee;
+}
+
+/* Bỏ border-bottom ở bài viết cuối cùng */
+.wt4-post-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* ======================== */
+/* THUMBNAIL ẢNH             */
+/* ======================== */
+.wt4-thumb-link {
+    display: block;
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.wt4-thumbnail {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    object-fit: cover;
+}
+
+.wt4-thumb-link:hover .wt4-thumbnail {
+    transform: scale(1.03);
+    opacity: 0.92;
+}
+
+/* ======================== */
+/* TIÊU ĐỀ BÀI VIẾT        */
+/* ======================== */
+.wt4-post-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    margin: 0;
+    color: #1a1a1a;
+}
+
+.wt4-post-title a {
+    color: #1a1a1a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.wt4-post-title a:hover {
+    color: #e53935;
+    text-decoration: none;
+}
+
+/* ======================== */
+/* KHU VỰC ABOVE FOOTER     */
+/* ======================== */
+.wt4-above-footer-area {
+    max-width: 1140px;
+    margin: 30px auto 10px auto;
+    padding: 0 15px;
+}
+
+.wt4-above-footer-area .wt4-widget-container {
+    margin: 0;
+}
+
+/* ======================== */
+/* RESPONSIVE               */
+/* ======================== */
+@media (max-width: 576px) {
+    .wt4-widget-container {
+        max-width: 100%;
+        margin: 15px 10px;
+    }
+
+    .wt4-card {
+        padding: 14px 12px 10px 12px;
+    }
+
+    .wt4-title {
+        font-size: 16px;
+    }
+
+    .wt4-post-title {
+        font-size: 14px;
+    }
+}

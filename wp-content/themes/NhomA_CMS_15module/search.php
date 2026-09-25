@@ -15,5 +15,23 @@ if (have_posts()) {
     include get_template_directory() . '/Moudle4/test.php';
 }
 
+<!-- WIDGET TEST 4: Phía trên Footer (Trang danh sách) -->
+<div class="wt4-above-footer-area">
+    <?php
+    if (function_exists('is_active_sidebar') && is_active_sidebar('above-footer')) {
+        dynamic_sidebar('above-footer');
+    } else {
+        $wt4_path = get_template_directory() . '/widget_test_4/widget_test_4.php';
+        if (file_exists($wt4_path)) {
+            include $wt4_path;
+            if (function_exists('nhom_a_render_widget_test_4')) {
+                nhom_a_render_widget_test_4();
+            }
+        }
+    }
+    ?>
+</div>
+
+<?php
 get_footer();
 
