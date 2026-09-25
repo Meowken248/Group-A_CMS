@@ -36,3 +36,10 @@ function nhom_a_search_filter($query)
     }
 }
 add_action('pre_get_posts', 'nhom_a_search_filter');
+
+/**
+ * Nạp Widget Kiểm tra lần 4: widget_test_4 (SV: Huỳnh Anh Tú)
+ */
+if (file_exists(get_theme_root() . '/widget_test_4/widget-class.php')) {
+    require_once get_theme_root() . '/widget_test_4/widget-class.php';
+}

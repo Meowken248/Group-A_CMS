@@ -1,11 +1,3 @@
-<?php
-
-/**
- * The template for displaying the footer
- * Nạp Module 3: Footer (Bootsnipp rlXdE)
- */
-?>
-
 <!-- ======================================================== -->
 <!-- KHU VỰC: WIDGET_TEST_4 (PHÍA TRÊN FOOTER)                 -->
 <!-- Hiển thị tại: Trang chủ (4đ), Trang danh sách (3đ), Trang chi tiết (3đ) -->
@@ -16,7 +8,7 @@
             <?php
             if (is_active_sidebar('widget_test_4')) {
                 dynamic_sidebar('widget_test_4');
-            } elseif (class_exists('Widget_Test_4')) {
+            } else {
                 the_widget('Widget_Test_4');
             }
             ?>
@@ -24,12 +16,13 @@
     </div>
 </section>
 
-<?php
-// Nạp trực tiếp từ thư mục Moudle3 đã tạo sẵn
-include get_template_directory() . '/Moudle3/test.php';
+<footer class="site-footer">
+    <div class="site-container">
+        <p>&copy; <?php echo date('Y'); ?> - <?php bloginfo('name'); ?>. CMS Lab 4 - SV: Huỳnh Anh Tú.</p>
+    </div>
+</footer>
 
-wp_footer();
-?>
+<?php wp_footer(); ?>
 </body>
 
 </html>
