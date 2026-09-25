@@ -19,8 +19,11 @@ add_action('after_setup_theme', 'nhom_a_theme_setup');
 
 function nhom_a_enqueue_scripts()
 {
-    // Nạp file style.css của theme
-    wp_enqueue_style('nhom-a-main-style', get_stylesheet_uri(), array(), '1.0');
+    // Nạp Google Font Lexend chuẩn hình mẫu Báo Mới (SV: Huỳnh Anh Tú)
+    wp_enqueue_style('google-font-lexend', 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap', array(), null);
+
+    // Nạp file style.css của theme (version 2.1 chống cache)
+    wp_enqueue_style('nhom-a-main-style', get_stylesheet_uri(), array('google-font-lexend'), '2.1');
 }
 add_action('wp_enqueue_scripts', 'nhom_a_enqueue_scripts');
 
