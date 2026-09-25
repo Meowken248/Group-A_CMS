@@ -59,118 +59,144 @@ body {
 
 /* ============================================================ */
 /* KHU VỰC: WIDGET_TEST_4 (PHÍA TRÊN FOOTER)                     */
-/* GIAO DIỆN CHUẨN THEO HÌNH MẪU ĐỀ BÀI (IMAGE 2)               */
+/* GIAO DIỆN CHUẨN THEO HÌNH MẪU ĐỀ BÀI (IMAGE 2) - SV: HUỲNH ANH TÚ */
 /* ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap');
+
 .widget-test-4-section {
-    background: #ffffff;
-    padding: 30px 0 20px 0;
-    border-top: 1px solid #e5e7eb;
-    margin-top: 40px;
-    clear: both;
+    background: #ffffff !important;
+    padding: 30px 0 35px 0 !important;
+    clear: both !important;
+    width: 100% !important;
 }
 
 .widget-test-4-container-box {
-    max-width: 580px;
-    margin: 0 auto;
-    padding: 0 15px;
-    background: #ffffff;
+    max-width: 440px !important;
+    margin: 0 auto !important;
+    padding: 0 15px !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
 }
 
 .widget-test-4-title {
-    display: none;
+    display: none !important;
 }
 
 .baomoi-widget-wrapper {
-    width: 100%;
+    width: 100% !important;
 }
 
-.baomoi-widget-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+ul.baomoi-widget-list {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
 }
 
-.baomoi-widget-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #f0f0f0;
+li.baomoi-widget-item {
+    list-style: none !important;
+    list-style-type: none !important;
+    padding: 13px 0 15px 0 !important;
+    border-bottom: 1px solid #ebebeb !important;
+    margin: 0 !important;
 }
 
-.baomoi-widget-item:last-child {
-    border-bottom: none;
+li.baomoi-widget-item:first-child {
+    padding-top: 0 !important;
+}
+
+li.baomoi-widget-item:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
 }
 
 .baomoi-widget-title {
-    font-size: 16.5px;
-    font-weight: 600;
-    line-height: 1.45;
-    margin-bottom: 7px;
+    font-family: 'Lexend', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    font-size: 17.5px !important;
+    font-weight: 500 !important;
+    line-height: 1.42 !important;
+    letter-spacing: -0.15px !important;
+    margin: 0 0 7px 0 !important;
+    padding: 0 !important;
 }
 
 .baomoi-widget-title a {
-    color: #111827;
-    text-decoration: none;
-    transition: color 0.15s ease-in-out;
-    display: block;
+    color: #2b2b2b !important;
+    text-decoration: none !important;
+    transition: color 0.15s ease-in-out !important;
+    display: inline !important;
 }
 
 .baomoi-widget-title a:hover {
-    color: #2563eb;
-    text-decoration: none;
+    color: #1d4ed8 !important;
+    text-decoration: none !important;
 }
 
 .baomoi-widget-meta {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    color: #6b7280;
-    line-height: 1;
+    display: flex !important;
+    align-items: center !important;
+    gap: 14px !important;
+    font-family: 'Lexend', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #767676 !important;
+    line-height: 1 !important;
+    margin-top: 6px !important;
+    margin-bottom: 0 !important;
 }
 
 .baomoi-widget-source {
-    display: inline-flex;
-    align-items: center;
-    line-height: 1;
+    display: inline-flex !important;
+    align-items: center !important;
+    line-height: 1 !important;
 }
 
-.baomoi-source-logo {
-    height: 15px;
-    max-height: 16px;
-    width: auto;
-    max-width: 95px;
-    object-fit: contain;
-    display: inline-block;
-    vertical-align: middle;
+img.baomoi-source-logo {
+    height: 13.5px !important;
+    max-height: 14px !important;
+    width: auto !important;
+    max-width: 90px !important;
+    object-fit: contain !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .baomoi-widget-time {
-    color: #6b7280;
-    font-size: 13px;
-    white-space: nowrap;
+    color: #767676 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
 }
 
 .baomoi-widget-related {
-    color: #6b7280;
-    font-size: 13px;
-    white-space: nowrap;
+    color: #767676 !important;
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 480px) {
     .widget-test-4-container-box {
-        max-width: 100%;
-        padding: 0 10px;
+        max-width: 100% !important;
+        padding: 0 12px !important;
     }
 
     .baomoi-widget-title {
-        font-size: 15.5px;
+        font-size: 16px !important;
     }
 
     .baomoi-widget-meta {
-        gap: 8px;
-        font-size: 12px;
+        gap: 10px !important;
+        font-size: 12px !important;
     }
 
-    .baomoi-source-logo {
-        height: 13px;
+    img.baomoi-source-logo {
+        height: 12.5px !important;
     }
 }
