@@ -375,22 +375,26 @@
 
                 <!-- 4. NẠP MODULE 7: BÀI VIẾT TRƯỚC - TIẾP THEO (PREV - NEXT POST) -->
                 <?php
-                if (file_exists(get_template_directory() . '/Module 7/prev-next.php')) {
-                    include get_template_directory() . '/Module 7/prev-next.php';
-                } elseif (file_exists(get_template_directory() . '/Module 7/test.php')) {
-                    include get_template_directory() . '/Module 7/test.php';
+                if (empty($skip_inner_modules)) {
+                    if (file_exists(get_template_directory() . '/Module 7/prev-next.php')) {
+                        include get_template_directory() . '/Module 7/prev-next.php';
+                    } elseif (file_exists(get_template_directory() . '/Module 7/test.php')) {
+                        include get_template_directory() . '/Module 7/test.php';
+                    }
                 }
                 ?>
 
                 <!-- 5. NẠP MODULE 8: BÌNH LUẬN (COMMENTS - BOOTSNIPP rNEdR) -->
                 <?php
-                if (comments_open() || get_comments_number()) {
-                    if (file_exists(get_template_directory() . '/Module 8/comments.php')) {
-                        include get_template_directory() . '/Module 8/comments.php';
-                    } elseif (file_exists(get_template_directory() . '/Module 8/test.php')) {
-                        include get_template_directory() . '/Module 8/test.php';
-                    } else {
-                        comments_template();
+                if (empty($skip_inner_modules)) {
+                    if (comments_open() || get_comments_number()) {
+                        if (file_exists(get_template_directory() . '/Module 8/comments.php')) {
+                            include get_template_directory() . '/Module 8/comments.php';
+                        } elseif (file_exists(get_template_directory() . '/Module 8/test.php')) {
+                            include get_template_directory() . '/Module 8/test.php';
+                        } else {
+                            comments_template();
+                        }
                     }
                 }
                 ?>

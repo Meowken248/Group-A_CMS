@@ -3,10 +3,12 @@ Theme Name: Nhom A Theme
 Theme URI: http://wordpress.local
 Author: Nhom A
 Version: 1.0
-Description: Theme đồ án Nhóm A WordPress
+Description: Theme đồ án Nhóm A WordPress - 15 Modules
 */
 
-/* Reset & Base Styles */
+/* ===================================================
+   RESET & BASE STYLES (DEFENSIVE CSS)
+   =================================================== */
 *,
 *::before,
 *::after {
@@ -19,6 +21,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: #f8f9fa;
     overflow-x: hidden;
+    color: #334155;
 }
 
 /* Đảm bảo toàn bộ hình ảnh không bao giờ tràn khung */
@@ -114,4 +117,30 @@ img {
         flex: 1;
         max-width: none;
     }
+}
+
+/* ===================================================
+   SITE CONTAINER & FOOTER (MODULE 3)
+   =================================================== */
+.site-main {
+    min-height: calc(100vh - 200px);
+}
+
+.site-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+}
+
+.site-footer {
+    background-color: #1e293b;
+    color: #94a3b8;
+    padding: 22px 0;
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.site-footer strong {
+    color: #f8fafc;
 }
