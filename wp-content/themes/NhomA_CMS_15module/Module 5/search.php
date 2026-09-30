@@ -16,7 +16,13 @@
 <style>
     /* ===================================================
        CSS MODULE 5: THẺ TIN TỨC CHUẨN MẪU FIT TDC
+       ĐÃ GIA CỐ PHÒNG THỦ CHỐNG VỠ KHUNG (DEFENSIVE CSS)
        =================================================== */
+    .fit-search-container,
+    .fit-search-container * {
+        box-sizing: border-box;
+    }
+
     .fit-search-container {
         max-width: 920px;
         margin: 30px auto 50px;
@@ -35,6 +41,7 @@
         overflow: hidden;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
         transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        max-width: 100%;
     }
 
     .fit-search-item:hover {
@@ -42,36 +49,41 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    /* CỘT 1: ẢNH ĐẠI DIỆN (THUMBNAIL) - 340px ôm sát mép trên/trái */
+    /* CỘT 1: ẢNH ĐẠI DIỆN (THUMBNAIL) - 340px ôm sát mép trên/trái/dưới, full 100% chiều cao thẻ */
     .fit-search-thumb {
         flex: 0 0 340px;
         width: 340px;
-        align-self: flex-start;
+        max-width: 100%;
+        flex-shrink: 0;
         margin: 0;
         overflow: hidden;
         background-color: #f8fafc;
-        line-height: 0;
+        display: flex;
+        align-self: stretch;
     }
 
     .fit-search-thumb a {
-        display: block;
+        display: flex;
         width: 100%;
-        line-height: 0;
+        height: 100%;
+        flex: 1;
     }
 
     .fit-search-thumb img,
     .fit-search-thumb svg {
         width: 100%;
-        height: 190px;
+        height: 100%;
+        min-height: 190px;
         object-fit: cover;
         display: block;
         border: none;
     }
 
-    /* CỘT 2: KHỐI NGÀY - THÁNG (DATE BADGE) */
+    /* CỘT 2: KHỐI NGÀY - THÁNG (DATE BADGE) - Cố định 150px không co rúm */
     .fit-search-date {
         flex: 0 0 150px;
         width: 150px;
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -105,11 +117,15 @@
     .fit-search-content {
         flex: 1;
         min-width: 0;
+        /* Cho phép flex item co lại, ép chữ dài phải xuống dòng */
         position: relative;
         padding: 30px 28px 28px 26px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     /* Đường kẻ phân cách dọc giữa khối ngày và nội dung */
@@ -130,12 +146,18 @@
         line-height: 1.38;
         text-transform: uppercase;
         font-family: Arial, Helvetica, sans-serif;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .fit-search-title a {
         color: #0174c6;
         text-decoration: none;
         transition: color 0.15s ease;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .fit-search-title a:hover {
@@ -149,17 +171,32 @@
         line-height: 1.6;
         margin: 0;
         font-family: Arial, Helvetica, sans-serif;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .fit-search-excerpt p {
         margin: 0;
         display: inline;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .fit-search-excerpt * {
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     /* PHÂN TRANG */
     .fit-search-pagination {
         margin-top: 30px;
         text-align: center;
+        max-width: 100%;
+        overflow-x: auto;
     }
 
     .fit-search-pagination .page-numbers {
@@ -187,12 +224,16 @@
 
         .fit-search-thumb {
             width: 100%;
-            height: auto;
+            height: 200px;
+            min-height: 200px;
             flex: none;
+            position: relative;
         }
 
-        .fit-search-thumb img {
-            height: 200px;
+        .fit-search-thumb img,
+        .fit-search-thumb svg {
+            width: 100%;
+            height: 100%;
         }
 
         .fit-search-content::before {
@@ -247,7 +288,7 @@
                         <?php if (has_post_thumbnail()) : ?>
                             <?php the_post_thumbnail('medium'); ?>
                         <?php else : ?>
-                            <img src="https://via.placeholder.com/340x190?text=FIT-TDC" alt="<?php the_title_attribute(); ?>">
+                            <img src="<?php echo esc_url(get_template_directory_uri() . '/Module 5/default-thumb.svg'); ?>" alt="<?php the_title_attribute(); ?>" class="attachment-medium size-medium wp-post-image">
                         <?php endif; ?>
                     </a>
                 </div>

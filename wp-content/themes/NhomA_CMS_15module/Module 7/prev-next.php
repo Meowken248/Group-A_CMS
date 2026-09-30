@@ -23,27 +23,36 @@ if (!$next_post && !$prev_post) {
     /* ===================================================
        CSS MODULE 7: DANH SÁCH BÀI VIẾT KẾ TIẾP & TRƯỚC ĐÓ
        CHUẨN XÁC 100% THEO ẢNH MẪU FIT TDC
+       ĐÃ GIA CỐ PHÒNG THỦ CHỐNG VỠ KHUNG (DEFENSIVE CSS)
        =================================================== */
+    .fit-prev-next-wrapper,
+    .fit-prev-next-wrapper * {
+        box-sizing: border-box;
+    }
+
     .fit-prev-next-wrapper {
         margin-top: 35px;
         padding-top: 25px;
         border-top: 1px solid #e5e7eb;
         font-family: Arial, Helvetica, sans-serif;
+        max-width: 100%;
     }
 
     .fit-prev-next-list {
         display: flex;
         flex-direction: column;
         gap: 22px;
+        max-width: 100%;
     }
 
     .fit-prev-next-item {
         display: flex;
         align-items: center;
         gap: 30px;
+        max-width: 100%;
     }
 
-    /* Khối phân số ngày tháng (Didone Serif thanh lịch) */
+    /* Khối phân số ngày tháng (Didone Serif thanh lịch) - Cố định 45px không co rúm */
     .fit-pn-date {
         display: inline-flex;
         align-items: center;
@@ -93,10 +102,13 @@ if (!$next_post && !$prev_post) {
         align-self: center;
     }
 
-    /* Tiêu đề bài viết */
+    /* Tiêu đề bài viết: tự động ngắt chữ chống toạc dòng */
     .fit-pn-title {
         flex: 1;
         min-width: 0;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .fit-pn-title a {
@@ -106,6 +118,11 @@ if (!$next_post && !$prev_post) {
         text-decoration: none;
         line-height: 1.5;
         transition: color 0.15s ease;
+        display: inline-block;
+        max-width: 100%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        word-break: break-word;
     }
 
     .fit-pn-title a:hover {
