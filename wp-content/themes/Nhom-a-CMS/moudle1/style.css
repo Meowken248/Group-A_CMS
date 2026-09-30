@@ -1,0 +1,58 @@
+/*
+Theme Name: Nhom A Theme
+Theme URI: http://wordpress.local
+Author: Nhom A
+Version: 1.0
+Description: Theme đồ án Nhóm A WordPress
+*/
+
+/* Reset & Style cho Header theo mẫu */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.custom-navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 25px;
+}
+
+.custom-search-input {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    font-size: 14px;
+}
+
+.custom-search-btn {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    color: #495057;
+    font-size: 14px;
+}
+
+.custom-search-btn:hover {
+    background-color: #e9ecef;
+}
+
+.header-icon-link {
+    color: #495057;
+    text-align: center;
+    padding: 0 10px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.header-icon-link:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.header-icon-link small {
+    display: block;
+    font-size: 11px;
+    margin-top: 2px;
+}
