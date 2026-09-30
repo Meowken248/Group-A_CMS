@@ -2,8 +2,8 @@
    Module 12: Comments Component (el.tdc.edu.vn Style)
    Author: Bùi Nguyễn Minh Quân (Nhóm A CMS - Module 12)
    Mô tả: Phong cách khối bình luận đặc trưng của hệ thống el.tdc.edu.vn:
-          - Tiêu đề Comments kèm đường gạch phân cách
-          - Danh sách liên kết bình luận màu xanh học thuật (#0066cc)
+          - Tiêu đề Comments kèm đường gạch phân cách xám thanh lịch
+          - Danh sách liên kết bình luận màu xanh học thuật (#2b78c5)
           - Đường phân cách ngang phẳng giữa các bình luận
    ========================================================================== */
 
@@ -13,9 +13,9 @@
     width: 100%;
     background: #ffffff;
     border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 18px 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    border-radius: 6px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
     margin-bottom: 24px;
 }
 
@@ -41,10 +41,10 @@
 
 /* Đường gạch chân dưới tiêu đề Comments (chuẩn theo ảnh yêu cầu el.tdc.edu.vn) */
 .module-12-title-underline {
-    width: 48px;
+    width: 44px;
     height: 2px;
-    background-color: #0066cc;
-    border-radius: 2px;
+    background-color: #8a95a5;
+    border-radius: 1px;
 }
 
 /* Danh sách các bình luận */
@@ -56,40 +56,40 @@
 
 /* Từng dòng bình luận */
 .module-12-item {
-    padding: 10px 0;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 9px 0;
+    border-bottom: 1px solid #e8ecf1;
     transition: background-color 0.15s ease, padding-left 0.15s ease;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
 }
 
 .module-12-item:first-child {
-    padding-top: 6px;
+    padding-top: 4px;
 }
 
 .module-12-item:last-child {
     border-bottom: none;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
 }
 
 .module-12-item:hover {
-    padding-left: 4px;
+    padding-left: 3px;
 }
 
 /* Liên kết văn bản bình luận màu xanh chuẩn phong cách TDC */
 .module-12-link {
-    color: #0066cc !important;
+    color: #2b78c5 !important;
     text-decoration: none !important;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13.5px;
+    font-weight: 400;
     line-height: 1.45;
     transition: color 0.15s ease;
     display: inline-block;
 }
 
 .module-12-link:hover {
-    color: #004499 !important;
+    color: #1a528a !important;
     text-decoration: underline !important;
 }
 

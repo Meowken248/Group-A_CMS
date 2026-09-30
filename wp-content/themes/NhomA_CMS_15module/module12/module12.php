@@ -7,7 +7,7 @@
  * Mô tả: Khối hiển thị Bình luận mới nhất (Comments) chuẩn giao diện el.tdc.edu.vn:
  *        - Tiêu đề "Comments" với đường gạch chân phân cách tinh gọn
  *        - Danh sách bình luận ngăn cách bởi các đường kẻ ngang liền mạch
- *        - Hỗ trợ dữ liệu bình luận thực tế từ WordPress hoặc dữ liệu mẫu chuẩn đề bài
+ *        - Dữ liệu bình luận thực tế từ WordPress
  */
 
 // Khai báo các hàm an toàn khi chạy độc lập ngoài WordPress
@@ -24,12 +24,12 @@ if (!function_exists('esc_url')) {
     }
 }
 
-// Tự động xác định đường dẫn file stylesheet của Module 12
+// Tự động xác định đường dẫn file stylesheet của Module 12 kèm cache busting
 $module12_css_url = '';
 if (function_exists('get_template_directory_uri')) {
-    $module12_css_url = get_template_directory_uri() . '/module12/style.css';
+    $module12_css_url = get_template_directory_uri() . '/module12/style.css?v=' . (defined('WP_DEBUG') && WP_DEBUG ? time() : '4.0');
 } else {
-    $module12_css_url = (basename(dirname($_SERVER['SCRIPT_NAME'] ?? '')) === 'module12') ? 'style.css' : 'module12/style.css';
+    $module12_css_url = (basename(dirname($_SERVER['SCRIPT_NAME'] ?? '')) === 'module12') ? 'style.css?v=4.0' : 'module12/style.css?v=4.0';
 }
 
 // Lấy danh sách bình luận đã duyệt từ WordPress
@@ -104,18 +104,13 @@ if (empty($tdc_comments)) {
         <div class="module-12-title-underline" aria-hidden="true"></div>
     </div>
 
-    <!-- Danh sách bình luận dạng tối giản -->
+    <!-- Danh sách bình luận dạng tối giản chuẩn ảnh mẫu -->
     <ul class="module-12-list">
         <?php foreach ($tdc_comments as $item) : ?>
             <li class="module-12-item">
                 <a href="<?php echo esc_url($item['url']); ?>" class="module-12-link" title="<?php echo esc_html($item['author'] . ' - ' . $item['post']); ?>">
                     <?php echo esc_html($item['content']); ?>
                 </a>
-                <?php if (!empty($item['author']) && $item['author'] !== 'Sinh viên FIT TDC') : ?>
-                    <span class="module-12-meta-hint">
-                        bởi <?php echo esc_html($item['author']); ?>
-                    </span>
-                <?php endif; ?>
             </li>
         <?php endforeach; ?>
     </ul>

@@ -156,3 +156,37 @@ function nhom_a_widgets_init()
     ));
 }
 add_action('widgets_init', 'nhom_a_widgets_init');
+
+/**
+ * Đăng ký Shortcode [module_16_quick_links] và [module_16]
+ * Cho phép chèn giao diện Module 16 (Liên kết nhanh & Bản tin) vào bất kỳ đâu
+ */
+function nhom_a_module_16_shortcode($atts)
+{
+    ob_start();
+    $module16_file = get_template_directory() . '/16/test.php';
+    if (file_exists($module16_file)) {
+        include $module16_file;
+    }
+    return ob_get_clean();
+}
+add_shortcode('module_16_quick_links', 'nhom_a_module_16_shortcode');
+add_shortcode('module_16', 'nhom_a_module_16_shortcode');
+
+/**
+ * ==========================================================
+ * MỞ RỘNG GIỚI HẠN NHẬP ĐƯỜNG LINK DÀI & SLUG (URL VALIDATION)
+ * ==========================================================
+ */
+// 1. Cho phép đường dẫn tĩnh (Slug) dài tối đa 1000 ký tự (mặc định WP bị cắt ở 200)
+add_filter('wp_unique_post_slug', function ($slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug) {
+    if (!empty($original_slug)) {
+        return mb_substr($original_slug, 0, 1000);
+    }
+    return $slug;
+}, 10, 6);
+
+// 2. Cho phép dán URL dài tự do trong nội dung mà không bị filter cắt bớt
+add_filter('content_save_pre', function ($content) {
+    return $content;
+});

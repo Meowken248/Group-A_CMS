@@ -3,10 +3,10 @@
    Author: Bùi Nguyễn Minh Quân (Nhóm A CMS - Module 11)
    Mô tả: Chuẩn xác 100% theo ảnh mẫu VnExpress của Giảng viên:
           - Tiêu đề "Xem nhiều" chữ thường đậm, màu đen (#111111), không gạch đỏ
-          - Bố cục 2 CỘT song song rõ ràng: Cột 1 (1 đến 4), Cột 2 (5 đến 8)
-          - Chữ số 1 - 8 Serif cỡ lớn (32px), cực đậm, màu đen tuyền (#111111)
+          - Bố cục 1 CỘT dọc duy nhất xếp hạng từ 1 đến 8 giúp cân đối bố cục
+          - Chữ số 1 - 8 Serif cỡ lớn (28px - 30px), cực đậm, màu đen tuyền (#111111)
           - Tiêu đề bài viết thanh mảnh kèm biểu tượng bình luận xám
-          - Nền trắng phẳng, không bo viền hộp thô kệch
+          - Nền trắng phẳng, bo viền nhẹ nhàng
    ========================================================================== */
 
 .module-11-container {
@@ -16,7 +16,7 @@
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 4px;
-    padding: 16px 20px;
+    padding: 16px 18px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     margin-bottom: 24px;
 }
@@ -29,7 +29,7 @@
 
 /* Tiêu đề "Xem nhiều" - KHÔNG CÓ VIỀN ĐỎ, KHÔNG CÓ NÚT TAB */
 .module-11-header-bar {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     padding-bottom: 0;
     border-bottom: none !important;
 }
@@ -44,46 +44,38 @@
     line-height: 1.2;
 }
 
-/* Bố cục 2 CỘT SONG SONG: Cột 1 (1-4), Cột 2 (5-8) */
-.module-11-columns-wrap {
+/* Bố cục 1 CỘT DUY NHẤT */
+.module-11-list {
     display: flex !important;
-    flex-direction: row !important;
-    gap: 20px !important;
+    flex-direction: column !important;
+    gap: 12px !important;
     width: 100% !important;
-}
-
-.module-11-col {
-    flex: 1 1 50% !important;
-    min-width: 0 !important;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
 }
 
 /* Từng mục bài viết */
 .module-11-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid #eeeeee;
-    min-width: 0;
-    width: 100%;
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+    padding-bottom: 12px !important;
+    border-bottom: 1px solid #eeeeee !important;
+    min-width: 0 !important;
+    width: 100% !important;
 }
 
 .module-11-item:last-child {
     border-bottom: none !important;
-    padding-bottom: 0;
+    padding-bottom: 0 !important;
 }
 
-/* Số thứ tự lớn phong cách VnExpress (Big Number Serif 32px) */
+/* Số thứ tự lớn phong cách VnExpress (Big Number Serif 28px - 30px) */
 .module-11-number {
     font-family: "Times New Roman", Times, Georgia, "Merriweather", serif;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    line-height: 0.9;
+    line-height: 0.95;
     color: #111111;
-    width: 22px;
+    min-width: 22px;
     text-align: left;
     flex-shrink: 0;
     user-select: none;
