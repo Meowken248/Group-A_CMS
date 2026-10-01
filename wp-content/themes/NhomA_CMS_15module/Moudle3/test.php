@@ -26,9 +26,9 @@ if ($is_standalone && function_exists('get_header')) {
 ?>
 
 <?php if ($is_standalone) : ?>
-<!-- Nạp CSS bổ sung khi xem độc lập -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Nạp CSS bổ sung khi xem độc lập -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <?php endif; ?>
 
 <!-- Định kiểu CSS riêng cho Module 3: Footer (Bootsnipp rlXdE) -->
@@ -213,7 +213,7 @@ if ($is_standalone && function_exists('get_header')) {
         <div class="row text-center text-xs-center text-sm-left text-md-left">
             <!-- CỘT 1: BÌNH LUẬN MỚI (COMMENTS) -->
             <div class="col-xs-12 col-sm-4 col-md-4 mb-3">
-                <h5>Bình luận mới</h5>
+                <h5>Comment</h5>
                 <ul class="list-unstyled quick-links">
                     <?php
                     $recent_comments = get_comments(array(
@@ -248,7 +248,7 @@ if ($is_standalone && function_exists('get_header')) {
 
             <!-- CỘT 2: CHUYÊN MỤC (CATEGORIES) -->
             <div class="col-xs-12 col-sm-4 col-md-4 mb-3">
-                <h5>Chuyên mục</h5>
+                <h5>Categories</h5>
                 <ul class="list-unstyled quick-links">
                     <?php
                     $categories = get_categories(array(
@@ -280,7 +280,7 @@ if ($is_standalone && function_exists('get_header')) {
 
             <!-- CỘT 3: BÀI VIẾT MỚI (LAST POSTS) -->
             <div class="col-xs-12 col-sm-4 col-md-4 mb-3">
-                <h5>Bài viết mới</h5>
+                <h5>Last posts</h5>
                 <ul class="list-unstyled quick-links">
                     <?php
                     $recent_posts = wp_get_recent_posts(array(
