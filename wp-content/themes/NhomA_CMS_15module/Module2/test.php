@@ -324,14 +324,6 @@ if ($is_standalone && function_exists('get_header')) {
                         <span class="fit-date-month">THÁNG <?php echo esc_html($post_month); ?></span>
                     </div>
 
-                    <!-- CỘT ẢNH ĐẠI DIỆN (NẾU CÓ FEATURED IMAGE) -->
-                    <?php if (has_post_thumbnail($post->ID)) : ?>
-                        <div class="fit-post-thumb">
-                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-                                <?php echo get_the_post_thumbnail($post->ID, 'medium', array('class' => 'fit-post-img', 'alt' => get_the_title())); ?>
-                            </a>
-                        </div>
-                    <?php endif; ?>
 
                     <!-- CỘT 2: TIÊU ĐỀ & TÓM TẮT BÀI VIẾT -->
                     <div class="fit-post-content">
