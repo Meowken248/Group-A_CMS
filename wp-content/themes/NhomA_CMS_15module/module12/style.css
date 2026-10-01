@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Module 12: Comments Component (el.tdc.edu.vn Style)
+   Author: Bùi Nguyễn Minh Quân (Nhóm A CMS - Module 12)
+   Mô tả: Phong cách khối bình luận đặc trưng của hệ thống el.tdc.edu.vn:
+          - Tiêu đề Comments kèm đường gạch phân cách xám thanh lịch
+          - Danh sách liên kết bình luận màu xanh học thuật (#2b78c5)
+          - Đường phân cách ngang phẳng giữa các bình luận
+   ========================================================================== */
+
+.module-12-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    box-sizing: border-box;
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    margin-bottom: 24px;
+}
+
+.module-12-container *,
+.module-12-container *::before,
+.module-12-container *::after {
+    box-sizing: border-box;
+}
+
+/* Khu vực tiêu đề Comments */
+.module-12-header {
+    margin-bottom: 14px;
+}
+
+.module-12-title {
+    margin: 0 0 6px 0;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #334155;
+    letter-spacing: -0.2px;
+}
+
+/* Đường gạch chân dưới tiêu đề Comments (chuẩn theo ảnh yêu cầu el.tdc.edu.vn) */
+.module-12-title-underline {
+    width: 44px;
+    height: 2px;
+    background-color: #8a95a5;
+    border-radius: 1px;
+}
+
+/* Danh sách các bình luận */
+.module-12-list {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Từng dòng bình luận */
+.module-12-item {
+    padding: 9px 0;
+    border-bottom: 1px solid #e8ecf1;
+    transition: background-color 0.15s ease, padding-left 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.module-12-item:first-child {
+    padding-top: 4px;
+}
+
+.module-12-item:last-child {
+    border-bottom: none;
+    padding-bottom: 2px;
+}
+
+.module-12-item:hover {
+    padding-left: 3px;
+}
+
+/* Liên kết văn bản bình luận màu xanh chuẩn phong cách TDC */
+.module-12-link {
+    color: #2b78c5 !important;
+    text-decoration: none !important;
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 1.45;
+    transition: color 0.15s ease;
+    display: inline-block;
+}
+
+.module-12-link:hover {
+    color: #1a528a !important;
+    text-decoration: underline !important;
+}
+
+/* Tác giả / metadata gợi ý nhỏ */
+.module-12-meta-hint {
+    font-size: 11px;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* Tương thích với Widget Footer của theme */
+.module-12-widget-wrap .module-12-container {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    background: transparent;
+}
