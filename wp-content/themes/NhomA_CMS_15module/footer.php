@@ -10,6 +10,25 @@
  * Theo yêu cầu đề bài, Widget Footer #1 (Module 11 - Archive) và Footer #2 (Module 12 - Comments)
  * đã được chuyển ra bố cục 3 cột ở trang chủ (index.php) kẹp 2 bên Content (2).
  */
+?>
+
+<!-- =======================================================================
+     KHU VỰC HIỂN THỊ WIDGET PHÍA TRÊN FOOTER (widget_test_4 - Nguyễn Thành Đạt)
+     ======================================================================= -->
+<section class="above-footer-widget-area" id="widget_test_4_area">
+    <?php
+    if (is_active_sidebar('above-footer-sidebar')) {
+        dynamic_sidebar('above-footer-sidebar');
+    } else {
+        // Tự động gọi widget_test_4 làm mặc định nếu chưa kéo trong WP-Admin
+        if (class_exists('widget_test_4')) {
+            the_widget('widget_test_4');
+        }
+    }
+    ?>
+</section>
+
+<?php
 $module3_path = get_template_directory() . '/Moudle3/test.php';
 if (file_exists($module3_path)) {
     include $module3_path;
