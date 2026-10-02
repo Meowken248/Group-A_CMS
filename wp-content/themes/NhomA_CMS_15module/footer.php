@@ -13,8 +13,11 @@
 ?>
 
 <!-- =======================================================================
-     KHU VỰC HIỂN THỊ WIDGET PHÍA TRÊN FOOTER (widget_test_4 - Bất Động Sản)
+     KHU VỰC: CÁC WIDGET TEST 4 PHÍA TRÊN FOOTER
+     Hiển thị tại: Trang chủ, Trang danh sách, Trang chi tiết
      ======================================================================= -->
+
+<!-- 1. WIDGET TEST 4: BẤT ĐỘNG SẢN (NGUYỄN THÀNH ĐẠT) -->
 <?php if (class_exists('Widget_Test_4_BDS')) : ?>
 <section class="above-footer-widget-area" id="widget_test_4_bds_area">
     <?php
@@ -27,10 +30,8 @@
 </section>
 <?php endif; ?>
 
-<!-- =======================================================================
-     KHU VỰC: WIDGET_TEST_4 (PHÍA TRÊN FOOTER - BÁO MỚI - SV: HUỲNH ANH TÚ)
-     Hiển thị tại: Trang chủ, Trang danh sách, Trang chi tiết
-     ======================================================================= -->
+<!-- 2. WIDGET TEST 4: BÁO MỚI (HUỲNH ANH TÚ) -->
+<?php if (class_exists('Widget_Test_4')) : ?>
 <section class="widget-test-4-section" id="widget_test_4_area">
     <div class="site-container">
         <div class="widget-test-4-container-box">
@@ -44,6 +45,24 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
+
+<!-- 3. WIDGET TEST 4: CHUYÊN MỤC THIẾT BỊ (BÙI NGUYỄN MINH QUÂN) -->
+<div class="wt4-above-footer-area" id="widget_test_4_thietbi_area">
+    <?php
+    if (function_exists('is_active_sidebar') && is_active_sidebar('above-footer')) {
+        dynamic_sidebar('above-footer');
+    } else {
+        $wt4_path = get_template_directory() . '/widget_test_4/widget_test_4.php';
+        if (file_exists($wt4_path)) {
+            include_once $wt4_path;
+            if (function_exists('nhom_a_render_widget_test_4')) {
+                nhom_a_render_widget_test_4();
+            }
+        }
+    }
+    ?>
+</div>
 
 <?php
 $module3_path = get_template_directory() . '/Moudle3/test.php';

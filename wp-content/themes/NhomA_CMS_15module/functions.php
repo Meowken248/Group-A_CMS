@@ -179,6 +179,26 @@ function nhom_a_widgets_init()
         'before_title'  => '<h4 class="widget-title">',
         'after_title'   => '</h4>',
     ));
+
+    // Widget Area: Phía trên Footer (Widget Test 4)
+    register_sidebar(array(
+        'name'          => 'Above Footer (Widget Test 4)',
+        'id'            => 'above-footer',
+        'description'   => 'Khu vực phía trên Footer - Hiển thị Widget Test 4 (Tin chuyên mục)',
+        'before_widget' => '<div id="%1$s" class="widget %2$s wt4-above-footer-widget">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h4 class="widget-title">',
+        'after_title'   => '</h4>',
+    ));
+
+    // Đăng ký Widget Test 4
+    $wt4_file = get_template_directory() . '/widget_test_4/widget_test_4.php';
+    if (file_exists($wt4_file)) {
+        require_once $wt4_file;
+        if (class_exists('Widget_Test_4')) {
+            register_widget('Widget_Test_4');
+        }
+    }
 }
 add_action('widgets_init', 'nhom_a_widgets_init');
 
@@ -227,4 +247,11 @@ if (file_exists(get_template_directory() . '/widget-class.php')) {
     require_once get_template_directory() . '/widget-class.php';
 } elseif (file_exists(get_theme_root() . '/widget_test_4/widget-class.php')) {
     require_once get_theme_root() . '/widget_test_4/widget-class.php';
+}
+
+/**
+ * Nạp Widget Kiểm tra lần 4: Widget_Test_4_ThietBi (Chuyên mục Thiết bị - Bùi Nguyễn Minh Quân)
+ */
+if (file_exists(get_template_directory() . '/widget_test_4/widget_test_4.php')) {
+    require_once get_template_directory() . '/widget_test_4/widget_test_4.php';
 }
