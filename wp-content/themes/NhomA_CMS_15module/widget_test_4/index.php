@@ -10,12 +10,12 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class widget_test_4 extends WP_Widget {
+class Widget_Test_4_BDS extends WP_Widget {
 
     public function __construct() {
         parent::__construct(
-            'widget_test_4',
-            'widget_test_4',
+            'widget_test_4_bds',
+            'widget_test_4_bds',
             array(
                 'description' => 'Widget hiển thị 3 dự án Bất Động Sản chính xác theo hình mẫu đề bài',
                 'classname'   => 'widget_test_4_box',
@@ -147,7 +147,7 @@ class widget_test_4 extends WP_Widget {
     }
 }
 
-function register_widget_test_4_init() {
-    register_widget('widget_test_4');
+function register_widget_test_4_bds_init() {
+    register_widget('Widget_Test_4_BDS');
 }
-add_action('widgets_init', 'register_widget_test_4_init');
+add_action('widgets_init', 'register_widget_test_4_bds_init');

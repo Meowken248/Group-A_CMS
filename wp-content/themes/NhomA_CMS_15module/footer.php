@@ -13,19 +13,36 @@
 ?>
 
 <!-- =======================================================================
-     KHU VỰC HIỂN THỊ WIDGET PHÍA TRÊN FOOTER (widget_test_4 - Nguyễn Thành Đạt)
+     KHU VỰC HIỂN THỊ WIDGET PHÍA TRÊN FOOTER (widget_test_4 - Bất Động Sản)
      ======================================================================= -->
-<section class="above-footer-widget-area" id="widget_test_4_area">
+<?php if (class_exists('Widget_Test_4_BDS')) : ?>
+<section class="above-footer-widget-area" id="widget_test_4_bds_area">
     <?php
     if (is_active_sidebar('above-footer-sidebar')) {
         dynamic_sidebar('above-footer-sidebar');
     } else {
-        // Tự động gọi widget_test_4 làm mặc định nếu chưa kéo trong WP-Admin
-        if (class_exists('widget_test_4')) {
-            the_widget('widget_test_4');
-        }
+        the_widget('Widget_Test_4_BDS');
     }
     ?>
+</section>
+<?php endif; ?>
+
+<!-- =======================================================================
+     KHU VỰC: WIDGET_TEST_4 (PHÍA TRÊN FOOTER - BÁO MỚI - SV: HUỲNH ANH TÚ)
+     Hiển thị tại: Trang chủ, Trang danh sách, Trang chi tiết
+     ======================================================================= -->
+<section class="widget-test-4-section" id="widget_test_4_area">
+    <div class="site-container">
+        <div class="widget-test-4-container-box">
+            <?php
+            if (is_active_sidebar('widget_test_4')) {
+                dynamic_sidebar('widget_test_4');
+            } elseif (class_exists('Widget_Test_4')) {
+                the_widget('Widget_Test_4');
+            }
+            ?>
+        </div>
+    </div>
 </section>
 
 <?php

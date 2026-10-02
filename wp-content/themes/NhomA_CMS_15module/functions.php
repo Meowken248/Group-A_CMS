@@ -31,10 +31,13 @@ add_action('after_setup_theme', 'nhom_a_theme_setup');
 
 function nhom_a_enqueue_scripts()
 {
-    // Nạp file style.css của theme
-    wp_enqueue_style('nhom-a-main-style', get_stylesheet_uri(), array(), '1.1');
+    // Nạp Google Font Lexend chuẩn hình mẫu Báo Mới (SV: Huỳnh Anh Tú)
+    wp_enqueue_style('google-font-lexend', 'https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap', array(), null);
 
-    // Nạp style.css của module widget_test_4 (Bất động sản - Nguyễn Thành Đạt)
+    // Nạp file style.css của theme (version 3.3 chống cache)
+    wp_enqueue_style('nhom-a-main-style', get_stylesheet_uri(), array('google-font-lexend'), '3.3');
+
+    // Nạp style.css của module widget_test_4 (Bất động sản)
     if (file_exists(get_template_directory() . '/widget_test_4/style.css')) {
         wp_enqueue_style('widget_test_4-style', get_template_directory_uri() . '/widget_test_4/style.css', array(), '1.0');
     }
@@ -42,14 +45,16 @@ function nhom_a_enqueue_scripts()
 add_action('wp_enqueue_scripts', 'nhom_a_enqueue_scripts');
 
 /**
- * Đăng ký Sidebar phía trên Footer cho widget_test_4
+ * Đăng ký các Sidebar phía trên Footer:
+ * 1. above-footer-sidebar: Dành cho widget BDS
+ * 2. widget_test_4: Dành cho widget Báo Mới (Huỳnh Anh Tú)
  */
 function nhom_a_register_sidebars()
 {
     register_sidebar(array(
-        'name'          => 'Above Footer Sidebar (Khu vực trên Footer)',
+        'name'          => 'Above Footer Sidebar (Khu vực trên Footer - BĐS)',
         'id'            => 'above-footer-sidebar',
-        'description'   => 'Khu vực hiển thị widget_test_4 phía trên Footer',
+        'description'   => 'Khu vực hiển thị widget Bất Động Sản phía trên Footer',
         'before_widget' => '<div id="%1$s" class="above-footer-widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h3 class="widget-title">',
@@ -209,8 +214,17 @@ add_filter('content_save_pre', function ($content) {
 });
 
 /**
- * Nạp Module: widget_test_4 (Nguyễn Thành Đạt - Bài test 4)
+ * Nạp Module: Widget_Test_4_BDS (Bất động sản)
  */
 if (file_exists(get_template_directory() . '/widget_test_4/index.php')) {
     require_once get_template_directory() . '/widget_test_4/index.php';
+}
+
+/**
+ * Nạp Widget Kiểm tra lần 4: Widget_Test_4 (Báo Mới - SV: Huỳnh Anh Tú)
+ */
+if (file_exists(get_template_directory() . '/widget-class.php')) {
+    require_once get_template_directory() . '/widget-class.php';
+} elseif (file_exists(get_theme_root() . '/widget_test_4/widget-class.php')) {
+    require_once get_theme_root() . '/widget_test_4/widget-class.php';
 }
