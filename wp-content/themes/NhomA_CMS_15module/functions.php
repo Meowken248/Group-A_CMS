@@ -23,6 +23,9 @@ function nhom_a_theme_setup()
     // Bật hỗ trợ excerpt (tóm tắt) cho Page
     add_post_type_support('page', 'excerpt');
 
+    // Hỗ trợ widgets
+    add_theme_support('widgets');
+
     // Định nghĩa kích thước ảnh thumbnail phù hợp cho card tin tức & module
     add_image_size('news-thumb', 300, 180, true);
     add_image_size('module-13-thumb', 600, 340, true);
@@ -219,9 +222,65 @@ add_shortcode('module_16', 'nhom_a_module_16_shortcode');
 
 /**
  * ==========================================================
+ * MODULE WEDGET_TEST_4: BÁO THANH NIÊN FOOTER & DATABASE
+ * Thực hiện: Lê Anh Tuấn
+ * ==========================================================
+ */
+$widget4_dir = get_template_directory() . '/wedget_test_4';
+if (file_exists($widget4_dir . '/class-thanhnien-db.php')) {
+    require_once $widget4_dir . '/class-thanhnien-db.php';
+    require_once $widget4_dir . '/class-thanhnien-widget.php';
+    require_once $widget4_dir . '/class-thanhnien-admin.php';
+
+    // Tự động kiểm tra và khởi tạo Database cho Footer Báo Thanh Niên
+    add_action('after_setup_theme', function () {
+        $db = new ThanhNien_Footer_DB();
+        $db->create_table();
+    });
+
+    // Đăng ký Custom Widget & Sidebar phía trên footer
+    add_action('widgets_init', function () {
+        register_widget('ThanhNien_Footer_Widget');
+
+        register_sidebar(array(
+            'name'          => 'Khu vực phía trên Footer (Pre-Footer)',
+            'id'            => 'pre-footer-sidebar',
+            'description'   => 'Khu vực hiển thị widget phía trên Footer (áp dụng cho Trang chủ, Trang danh sách, Trang chi tiết).',
+            'before_widget' => '<div id="%1$s" class="pre-footer-widget %2$s">',
+            'after_widget'  => '</div>',
+            'before_title'  => '<h3 class="widget-title" style="display:none;">',
+            'after_title'   => '</h3>',
+        ));
+    });
+
+    // Khởi tạo trang quản trị trong WP Admin
+    if (is_admin()) {
+        new ThanhNien_Footer_Admin();
+    }
+}
+
+/**
+ * Đăng ký Shortcode [widget_test_4], [wedget_test_4] và [module_4_footer]
+ */
+function nhom_a_widget_test_4_shortcode($atts)
+{
+    ob_start();
+    $widget4_file = get_template_directory() . '/wedget_test_4/test.php';
+    if (file_exists($widget4_file)) {
+        include $widget4_file;
+    }
+    return ob_get_clean();
+}
+add_shortcode('widget_test_4', 'nhom_a_widget_test_4_shortcode');
+add_shortcode('wedget_test_4', 'nhom_a_widget_test_4_shortcode');
+add_shortcode('module_4_footer', 'nhom_a_widget_test_4_shortcode');
+
+/**
+ * ==========================================================
  * MỞ RỘNG GIỚI HẠN NHẬP ĐƯỜNG LINK DÀI & SLUG (URL VALIDATION)
  * ==========================================================
  */
+// 1. Cho phép đường dẫn tĩnh (Slug) dài tối đa 1000 ký tự (mặc định WP bị cắt ở 200)
 add_filter('wp_unique_post_slug', function ($slug, $post_ID, $post_status, $post_type, $post_parent, $original_slug) {
     if (!empty($original_slug)) {
         return mb_substr($original_slug, 0, 1000);
@@ -229,6 +288,7 @@ add_filter('wp_unique_post_slug', function ($slug, $post_ID, $post_status, $post
     return $slug;
 }, 10, 6);
 
+// 2. Cho phép dán URL dài tự do trong nội dung mà không bị filter cắt bớt
 add_filter('content_save_pre', function ($content) {
     return $content;
 });

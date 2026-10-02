@@ -64,6 +64,20 @@
     ?>
 </div>
 
+<!-- 4. WIDGET TEST 4: BÁO THANH NIÊN FOOTER (LÊ ANH TUẤN) -->
+<section class="widget-test-4-thanhnien-area" id="widget_test_4_thanhnien_area">
+    <?php
+    if (function_exists('is_active_sidebar') && is_active_sidebar('pre-footer-sidebar')) {
+        dynamic_sidebar('pre-footer-sidebar');
+    } else {
+        $widget_test_4_tuan = get_template_directory() . '/wedget_test_4/test.php';
+        if (file_exists($widget_test_4_tuan)) {
+            include $widget_test_4_tuan;
+        }
+    }
+    ?>
+</section>
+
 <?php
 $module3_path = get_template_directory() . '/Moudle3/test.php';
 if (file_exists($module3_path)) {
